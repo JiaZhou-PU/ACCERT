@@ -1264,7 +1264,6 @@ class Accert:
         for row in c.stored_results():
             results = row.fetchall()
         fac, lab, mat = results[0]
-        print(fac, lab, mat)
         return fac,lab,mat
     
     def roll_up_lmt_account_table(self, c):
