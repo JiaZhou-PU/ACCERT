@@ -38,6 +38,7 @@ class Accert:
         self.alg_tabl = None
         self.esc_tabl = None
         self.fac_tabl = None
+        self.use_gncoa = False
     
     def setup_table_names(self,xml2obj):
         """Setup different table names in the database.
