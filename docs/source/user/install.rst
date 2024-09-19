@@ -1,4 +1,3 @@
-.. _installation:
 
 Installation Guide for ACCERT
 =============================
@@ -10,6 +9,7 @@ Prerequisites
 -------------
 
 - **Git**: Ensure Git is installed on your system.
+
   - Download from `Git - Downloads <https://git-scm.com/downloads>`_ if not already installed.
   - Verify installation by typing ``git`` in your terminal; if commands appear, Git is installed.
 - **Python Coding Environment**: While not required, using an IDE like Visual Studio Code is recommended.
@@ -73,14 +73,13 @@ Install MySQL Community Server
 
       During installation, you will be prompted to create a **root password** for MySQL. **Keep this password secure and accessible**; resetting it can be time-consuming and difficult.
 
-  ![password1.png](_static/password1.png)
+   .. image:: ../_static/password1.png
+      :width: 600
+      :alt: MySQL Password Setup
 
-  *MySQL Password Setup*
-
-  ![password2.png](_static/password2.png)
-
-  *MySQL Configuration*
-
+   .. image:: ../_static/password2.png
+      :width: 600
+      :alt: MySQL Configuration
 
 Install NEAMS Workbench
 ~~~~~~~~~~~~~~~~~~~~~~~
