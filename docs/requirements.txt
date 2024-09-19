@@ -1,2 +1,3 @@
 sphinx_design
 nbsphinx
+pydata_sphinx_theme
