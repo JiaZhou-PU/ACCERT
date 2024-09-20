@@ -1,0 +1,13 @@
+.scrollable-table {
+    overflow-x: auto;
+    display: block;
+}
+
+.scrollable-table table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.scrollable-table td, .scrollable-table th {
+    word-wrap: break-word;
+}

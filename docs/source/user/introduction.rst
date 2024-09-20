@@ -58,7 +58,7 @@ New Features
 
 1. **GNCOA vs. EEDB COA Output Ordering**:
 
-   - ACCERT now offers the option to output results ordered by either **GNCOA** (Generation IV Nuclear Code of Accounts) or **EEDB COA** (Energy Economic Database Code of Accounts).
+   - ACCERT now offers the option to output results ordered by either **GNCOA** (Generalized Nuclear Code of Accounts) or **EEDB COA** (Energy Economic Database Code of Accounts).
    - This flexibility allows users to select the accounting framework that best aligns with their project's requirements.
 
 2. **Fusion Model Integration**:

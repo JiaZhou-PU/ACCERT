@@ -3,7 +3,7 @@ Input Structure
 
 
 This guide provides a comprehensive explanation of the structure of the ACCERT input file.
-ACCERT (Advanced Cost Calculation and Estimation Resource Tool) is used for estimating the
+ACCERT (The Algorithm for the Capital Cost Estimation of Reactor Technologies) is used for estimating the
 costs associated with nuclear reactor systems. The input file is designed to be flexible and
 extensible, allowing users to define various parameters, algorithms, and cost elements.
 
