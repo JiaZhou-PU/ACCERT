@@ -6,7 +6,9 @@ User's Guide
 .. toctree::
    :maxdepth: 1
 
+   introduction
    install
    getting_started
-   usage
+   input_structure
+   output_structure
 

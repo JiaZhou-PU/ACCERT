@@ -26,7 +26,7 @@ Welcome to ACCERT's Documentation
         The user's guide contains instructions for installing and an overview of
         the basic concepts.
 
-    .. grid-item-card:: \ :octicon:`terminal;2em` API Reference
+    .. grid-item-card:: \ :octicon:`terminal;2em` Reference
         :text-align: center
         :link: reference/index
         :link-type: doc

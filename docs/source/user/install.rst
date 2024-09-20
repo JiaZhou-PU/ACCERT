@@ -500,7 +500,7 @@ Troubleshooting
 
 - **Password Issues**:
 
-  - If you forget your MySQL root password, refer to MySQL's official documentation on how to reset it.
+  - If you forget your MySQL root password, refer to MySQL's official documentation on how to reset the password.
   - It's crucial to keep your password secure and accessible.
 
 - **File Extensions on Windows**:
