@@ -1,6 +1,6 @@
 
-Installation Guide for ACCERT
-=============================
+Installation Guide
+==================
 
 This guide provides step-by-step instructions to install ACCERT on **Windows**, **macOS**, and **Linux** systems. Please ensure you have administrative privileges on your device, as some steps require it.
 
