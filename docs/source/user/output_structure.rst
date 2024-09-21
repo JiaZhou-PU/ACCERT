@@ -86,8 +86,8 @@ Generated Files
 
 At the end of the process, ACCERT generates several files for further review:
 
-- **Variable-Affected Cost Elements**: Shows the cost elements affected by updated variables.
-- **Updated Cost Elements**: Lists all cost elements with recalculated values.
+- **Variable-Affected Cost Elements**: Shows the cost elements affected by updated variables, ordered by variable name.
+- **Updated Cost Elements**: Lists all cost elements with recalculated values, ordered by cost element name.
 - **Updated Account Table**: Provides the total rolled-up costs for each account.
 
 These files can be used for deeper analysis and review.

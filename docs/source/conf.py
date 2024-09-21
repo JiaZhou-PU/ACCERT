@@ -43,8 +43,14 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',  
     'sphinx_design',
-    'nbsphinx',  
+    'nbsphinx', 
+    'myst_parser', 
 ]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 
 autodoc_default_options = {

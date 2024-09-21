@@ -7,17 +7,17 @@ some discussion about the table
    :header-rows: 1
    :file: ../../../../tutorial/ref_tables/fusion_acc.csv
    :widths: auto
-   :class: scrollable-table
+   :class: wide-table
 
 .. csv-table:: [Insert Table Title]
    :header-rows: 1
    :file: ../../../../tutorial/ref_tables/fusion_alg.csv
    :widths: auto
-   :class: scrollable-table
+   :class: wide-table
 
 .. csv-table:: [Insert Table Title]
-    :header-rows: 1
-    :file: ../../../../tutorial/ref_tables/fusion_var.csv
-    :widths: auto
-   :class: scrollable-table
+   :header-rows: 1
+   :file: ../../../../tutorial/ref_tables/fusion_var.csv
+   :widths: auto
+   :class: wide-table
 
