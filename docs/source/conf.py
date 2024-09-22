@@ -25,6 +25,7 @@ accert_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 # Add the parent directory of 'src/' to sys.path
 sys.path.insert(0, os.path.join(accert_path, 'src'))
 
+autodoc_mock_imports = ["pandas", "subprocess", "xml2obj"]
 
 
 # -- Project information -----------------------------------------------------
