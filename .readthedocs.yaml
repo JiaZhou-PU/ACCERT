@@ -14,14 +14,22 @@ build:
     # nodejs: "19"
     # rust: "1.64"
     # golang: "1.19"
-
   jobs:
-    - install:
-        # Install dependencies from requirements.txt
-        - requirements: docs/requirements.txt
-    - build:
-        # Run your custom scripts before building the documentation
-        - command: |
-            python docs/generate_sp_docs.py
-            python docs/generate_main_docs.py
-            sphinx-build -b html docs/source docs/build/html
+    prebuild:
+      - python docs/generate_sp_docs.py
+      - python docs/generate_main_docs.py
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: docs/source/conf.py
+
+# Optionally build your docs in additional formats such as PDF and ePub
+# formats:
+#    - pdf
+#    - epub
+
+# Optional but recommended, declare the Python requirements required
+# to build your documentation
+# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+python:
+   install:
+   - requirements: docs/requirements.txt
