@@ -55,7 +55,7 @@ with open(main_class_file_path, 'r') as main_class_file:
     # Step 3: Parse the Main class file to get all the methods
     # Use regex to find all methods in the class
     method_names = re.findall(r'def (\w+)\(', main_class_content)
-    print(f'Found methods in Main class: {method_names}')
+    print(f'Found methods in Main class: {method_names}, at folder: {main_class_file_path}')
     # Step 4: Add methods to the Toctree with Main.Accert. at the beginning
     for method_name in method_names:
         with open(toc_file_path, 'a', encoding='utf-8') as toctree_file:

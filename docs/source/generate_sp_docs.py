@@ -2,9 +2,9 @@ import re
 import os
 import textwrap
 
-# Path to your SQL file
-sql_file_path = '../src/accertdb.sql'
-
+# Path to your SQL file use absolute path
+# ../../sql/your_sql_file.sql
+sql_file_path = os.path.abspath('../src/accertdb.sql')
 # Output directory for Markdown files
 output_dir = 'source/reference/database/'
 
