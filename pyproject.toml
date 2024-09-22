@@ -7,13 +7,13 @@ name = "ACCERT"
 version = "0.1.0"
 description = "The Algorithm for the Capital Cost Estimation of Reactor Technologies."
 authors = [
-    { name = "Argonne National Laboratory, email = "jia.zhou@anl.gov" },
+    { name = "Argonne National Laboratory, email = "jia.zhou@anl.gov" }
 ]
 readme = "README.md"
 requires-python = ">=3.7"
 license = { file = "LICENSE" }
 
-keywords = ["documentation", "sphinx", "autosummary", "ACCERT"]
+keywords = ["ACCERT"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
