@@ -9,7 +9,7 @@ Each table is associated with a unique identifier, which is used to track and ca
 
    The ABR1000 model only contains partial data for the account table, the total direct cost is calculated using `COA 2C calculated direct cost` and the total percentage of the known accounts. 
 
-ABR1000_account Table
+ABR1000 Account Table
 ---------------------
 This table contains the account information for the ABR1000 model.
 ABR1000 account table can also ordered by GNCOA. Each entity in the account table is associated with a unique identifier, which is used to track and categorize costs. The table is organized into multiple levels, with each level representing a different component or subtask. 
@@ -30,13 +30,13 @@ The table includes the following columns:
    - **gn_ind**: generalized nuclear code of account unique identifier
 
 
-.. csv-table:: [ABR1000_account]
+.. csv-table:: [ABR1000 Account Table]
    :header-rows: 1
    :file: ../../../../tutorial/ref_tables/ABR1000_account.csv
    :widths: auto
    :class: normal-table
 
-ABR1000_cost_element Table
+ABR1000 Cost Element Table
 --------------------------
 This table contains the cost element information for the ABR1000 model. Each entitiy in the account 
 table is divided into 3 main cost categories: Factory Equipment Costs, Labor Costs, and Material Costs.
@@ -55,13 +55,13 @@ The table includes the following columns:
    - **algno**: algorithm number in the algorithm table
    - **updated**: updated status of the cost element, 0 for unchanged and 1 for updated, note that the default value should always be 0
  
-.. csv-table:: [ABR1000_cost_element]
+.. csv-table:: [ABR1000 Cost Element Table]
    :header-rows: 1
    :file: ../../../../tutorial/ref_tables/ABR1000_cost_element.csv
    :widths: auto
    :class: normal-table
 
-ABR1000_variable Table
+ABR1000 Variable Table
 ----------------------
 This table contains the variable information for the ABR1000 model. All variables are needed to be calculated by the algorithm. Some variables are connected to the algorithm table through the `var_alg` column, which links each variable to a specific algorithm. The table is also connected to itself through the `v_linked` and `var_needed` column, which links each variable to a superior variable and the variables needed to calculate it.
 
@@ -77,7 +77,7 @@ The table includes the following columns:
    - **v_linked**: superior variable if any
    - **user_input**: user input status of the variable, 0 for not user input and 1 for user input, note that the default value should always be 0
 
-.. csv-table:: [ABR1000_variable]
+.. csv-table:: [ABR1000 Variable Table]
    :header-rows: 1
    :file: ../../../../tutorial/ref_tables/ABR1000_variable.csv
    :class: wide-table

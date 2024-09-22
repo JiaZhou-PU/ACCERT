@@ -17,6 +17,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src'))
+import subprocess
 
 
 
@@ -87,3 +88,29 @@ html_theme = 'pydata_sphinx_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_css_files = ['custom.css',]
+
+
+# -- Custom Functions and Setup ----------------------------------------------
+
+def run_generate_sp_docs(app):
+    """
+    Runs the generate_sp_docs.py script to generate documentation for stored procedures.
+    """
+    # Determine the path to the script relative to conf.py
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    script_path = os.path.join(script_dir, 'generate_sp_docs.py')
+    
+    # Check if the script exists
+    if not os.path.exists(script_path):
+        app.warn(f"Documentation script not found at {script_path}")
+        return
+    
+    # Run the script using the same Python interpreter as Sphinx
+    try:
+        subprocess.check_call([sys.executable, script_path])
+        print("Successfully ran generate_sp_docs.py")
+    except subprocess.CalledProcessError as e:
+        app.warn(f"Error running generate_sp_docs.py: {e}")
+
+def setup(app):
+    app.connect('builder-inited', run_generate_sp_docs)
