@@ -50,6 +50,8 @@ Accert Class
 """)
 # Step 2: Read the Main class file in ../src/Main.py use absoulte path
 main_class_file_path = os.path.join(current_dir, '../..', 'src', 'Main.py')
+# give absolute path to open the file
+main_class_file_path = os.path.abspath(main_class_file_path)
 with open(main_class_file_path, 'r') as main_class_file:
     main_class_content = main_class_file.read()
     # Step 3: Parse the Main class file to get all the methods
