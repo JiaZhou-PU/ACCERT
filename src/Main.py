@@ -1,17 +1,20 @@
-import mysql.connector
-import os
-from prettytable import PrettyTable
-import configparser
 import xml2obj
 from utility_accert import Utility_methods
 from Algorithm import Algorithm
-import importlib
-import numpy as np
+
+
+import os
 import sys
-import pandas.io.sql as sql
-import pandas as pd
 import warnings
 from typing import Union
+
+import mysql.connector
+import configparser
+import importlib
+import numpy as np
+import pandas as pd
+import pandas.io.sql as sql
+from prettytable import PrettyTable
 
 warnings.filterwarnings('ignore')
 PathLike = Union[str, bytes, os.PathLike]

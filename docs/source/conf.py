@@ -16,8 +16,14 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+# sys.path.insert(0, os.path.abspath('../../src'))
 import subprocess
+
+
+# Determine the absolute path to ACCERT
+accert_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+# Add the parent directory of 'src/' to sys.path
+sys.path.insert(0, os.path.join(accert_path, 'src'))
 
 
 
@@ -54,6 +60,16 @@ source_suffix = {
 }
 
 
+# Enable autosummary
+autosummary_generate = True
+
+# Optional: Set the path where autosummary will generate the .rst files
+autosummary_generate_overwrite = True
+
+# If you want to place autosummary generated files in a specific directory
+autosummary_imported_members = True
+
+
 autodoc_default_options = {
     'members': True,
     'undoc-members': False,
@@ -88,29 +104,3 @@ html_theme = 'pydata_sphinx_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_css_files = ['custom.css',]
-
-
-# -- Custom Functions and Setup ----------------------------------------------
-
-def run_generate_sp_docs(app):
-    """
-    Runs the generate_sp_docs.py script to generate documentation for stored procedures.
-    """
-    # Determine the path to the script relative to conf.py
-    script_dir = os.path.abspath(os.path.dirname(__file__))
-    script_path = os.path.join(script_dir, 'generate_sp_docs.py')
-    
-    # Check if the script exists
-    if not os.path.exists(script_path):
-        app.warn(f"Documentation script not found at {script_path}")
-        return
-    
-    # Run the script using the same Python interpreter as Sphinx
-    try:
-        subprocess.check_call([sys.executable, script_path])
-        print("Successfully ran generate_sp_docs.py")
-    except subprocess.CalledProcessError as e:
-        app.warn(f"Error running generate_sp_docs.py: {e}")
-
-def setup(app):
-    app.connect('builder-inited', run_generate_sp_docs)

@@ -7,6 +7,5 @@ ACCERT Reference
    :maxdepth: 1
 
    main
-   utility
    table
    database

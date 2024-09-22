@@ -60,6 +60,21 @@ def generate_markdown_table(parameters):
 def main():
     # Step 1: Clean up old Markdown files
     clean_output_directory(output_dir)
+
+    # remove the old toctree file if it exists
+    if os.path.exists(toctree_file_path):
+        os.remove(toctree_file_path)
+    # create a new toctree file
+    with open(toctree_file_path, 'w', encoding='utf-8') as toctree_file:
+            toctree_file.write(f"""
+Database Stored Procedures
+==========================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+                               
+""")
     
     # Step 2: Read the SQL file
     try:
@@ -131,11 +146,11 @@ title: {sp_name}
 
 {sp_description}
 
-### Parameters
+## Parameters
 
 {parameters_table}
 
-### SQL Definition
+## SQL Definition
 
 ```sql
 {full_sp_sql}
@@ -150,10 +165,9 @@ title: {sp_name}
         except Exception as e:
             print(f'Error writing Markdown file for {sp_name}: {e}')
             continue
-
-        # Append the Markdown file to the Toctree
+    # Append the Markdown file to the Toctree
         append_to_toctree(sp_name)
-
+        
     print("All stored procedures have been documented successfully.")
 
 

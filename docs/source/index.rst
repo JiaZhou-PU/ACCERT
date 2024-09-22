@@ -63,8 +63,8 @@ Welcome to ACCERT's Documentation
 
     user/index
     reference/index
-    dev/index
-    examples/index
+    reference/index
+    reference/index
 
 .. admonition:: Recommended publication for citing
    :class: tip
