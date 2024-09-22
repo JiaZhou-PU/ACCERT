@@ -29,7 +29,7 @@ print(f'Current directory: {current_dir}')
 sys.path.insert(0, os.path.join(accert_path, 'src'))
 
 # import src folder
-subprocess.run(['sphinx-apidoc', '-o', 'source/', '../src/', '--force'])
+subprocess.run(['sphinx-apidoc', '-o', 'source/', '../../src/', '--force'])
 
 # -- Project information -----------------------------------------------------
 
