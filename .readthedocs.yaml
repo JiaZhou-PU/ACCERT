@@ -19,7 +19,10 @@ build:
     pre_build:
       - python docs/source/generate_sp_docs.py
       - python docs/source/generate_autorst.py
+      # echo path
+      - echo $PATH
       - export PATH=$PATH:/src
+      - echo $PATH
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
   configuration: docs/source/conf.py
