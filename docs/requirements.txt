@@ -1,6 +1,4 @@
 sphinx_design
 nbsphinx
 pydata_sphinx_theme
-sphinx-autodoc 
-sphinx-autodoc-typehints
 myst_parser
