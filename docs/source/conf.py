@@ -22,6 +22,9 @@ import subprocess
 
 # Determine the absolute path to ACCERT
 accert_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+print(f'ACCERT path: {accert_path}')
+current_dir = os.path.dirname(os.path.abspath(__file__))
+print(f'Current directory: {current_dir}')
 # Add the parent directory of 'src/' to sys.path
 sys.path.insert(0, os.path.join(accert_path, 'src'))
 
