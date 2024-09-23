@@ -9,10 +9,12 @@ Getting Started
 ~~~~~~~~~~~~~~~
 
 1. **Fork the Repository**:
+
    - Navigate to the ACCERT repository on GitHub.
    - Click the "Fork" button in the top-right corner to create a copy of the repository in your GitHub account.
 
 2. **Clone the Forked Repository**:
+
    - Clone your fork to your local machine:
      
 .. code-block:: console
@@ -21,13 +23,15 @@ Getting Started
     cd ACCERT
 
 3. **Create a Branch**:
+
    - It's best practice to create a new branch for each feature or fix you are working on:
 
-    .. code-block:: console
+.. code-block:: console
 
-     git checkout -b my-new-feature
+    git checkout -b my-new-feature
 
 4. **Set Up Your Environment**:
+
    - Ensure you have Python installed and set up your virtual environment and install the required dependencies by running:
 
      
@@ -38,6 +42,7 @@ Getting Started
     pip install -r requirements.txt
 
 5. **Run Tests**:
+
    - Before making any changes, run the existing test suite to ensure everything works as expected:
 
 .. code-block:: console
@@ -55,9 +60,11 @@ Reporting Bugs
 If you encounter a bug, please report it by following these steps:
 
 1. **Search Existing Issues**: 
+
    - Check the `Issues section <https://github.com/accert-dev/ACCERT/issues>`_ to see if the bug has already been reported.
    
 2. **Create a New Issue**:
+
    - If the bug hasn’t been reported, open a new issue. Be sure to include:
      - A descriptive title.
      - A detailed description of the problem.
@@ -118,6 +125,7 @@ If you'd like to contribute code, follow these steps:
 
 
 7. **Open a Pull Request (PR)**:
+
    - Go to the [original `ACCERT repository <https://github.com/accert-dev/ACCERT>` and open a new pull request:
      - Make sure to describe the changes you’ve made in the PR description.
      - Include any relevant issue numbers (e.g., `Fixes #123`).
