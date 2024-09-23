@@ -70,4 +70,4 @@ Welcome to ACCERT's Documentation
 .. admonition:: Recommended publication for citing
    :class: tip
 
-   Zhou, Jia, Stauff, Nicolas E., and Hoffman, Edward A. ACCERT. Computer Software. https://github.com/accert-dev/ACCERT. USDOE Office of Nuclear Energy (NE). 17 Mar. 2023. Web. doi:10.11578/dc.20240601.1.
+   Zhou, Jia, Stauff, Nicolas E., and Hoffman, Edward A. ACCERT. Computer Software. `https://github.com/accert-dev/ACCERT`. USDOE Office of Nuclear Energy (NE). 17 Mar. 2023. Web. `doi:10.11578/dc.20240601.1 <https://doi.org/10.11578/dc.20240601.1>`_.

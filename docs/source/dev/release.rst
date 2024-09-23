@@ -4,7 +4,7 @@ ACCERT Release Notes
 ====================
 
 Version 1.0.0 (09/30/2024)
---------------------
+----------------------------
 
 ### New Features
 
@@ -49,6 +49,7 @@ Version 1.0.0 (09/30/2024)
    - Replaced instances of the `execute` method with stored procedures for database interaction, leading to better performance and more consistent operations.
 
 Version 0.1.0 (04/05/2023)
+--------------------------
 
 - [ACCERT relational database](https://github.com/accert-dev/ACCERT/blob/main/src/accertdb.sql)
 - [PWR-12BE case](https://github.com/accert-dev/ACCERT/blob/main/tutorial/PWR12-BE.son)
