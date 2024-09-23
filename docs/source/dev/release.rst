@@ -6,7 +6,8 @@ ACCERT Release Notes
 Version 1.0.0 (09/30/2024)
 ----------------------------
 
-### New Features
+New Features
+~~~~~~~~~~~~
 
 1. **GNCOA vs. EEDB COA Output Ordering**:
    - ACCERT now supports choosing between two output formats:
@@ -38,12 +39,15 @@ Version 1.0.0 (09/30/2024)
     - Updated the documentation to reflect the new features and provide detailed instructions on how to use them.
     - Added examples and explanations to help users understand the changes and how they can leverage the new functionality.
 
-### Bug Fixes
+Bug Fixes
+~~~~~~~~~~~~
+
 
 - **Cross-Platform Compatibility**: 
   - Addressed issues with unit tests that passed on macOS but failed on Linux, improving cross-platform consistency.
 
-### Performance Enhancements
+Performance Enhancements
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **Stored Procedure Usage**:
    - Replaced instances of the `execute` method with stored procedures for database interaction, leading to better performance and more consistent operations.
@@ -57,7 +61,8 @@ Version 0.1.0 (04/05/2023)
 - [Initial documentation](https://github.com/accert-dev/ACCERT/blob/main/README.md)
 - [Installation automation](https://github.com/accert-dev/ACCERT/blob/main/src/setup_accert.sh)
 
-### Features
+Features
+~~~~~~~~~~~~
 
 - **Customizable Parameters**: Enables adjustment of variables and parameters to align with specific reactor designs or project requirements.
 - **Relational Databases**: Provides access to comprehensive cost data from reference reactor models, which can be tailored to new designs.
