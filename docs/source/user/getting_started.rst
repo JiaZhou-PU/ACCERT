@@ -30,9 +30,9 @@ Using ACCERT via Python
 
    -  Open a terminal and navigate to the directory containing your input file (e.g., `tutorial`):
 
-     .. code-block:: shell
+   .. code-block:: shell
 
-         $ cd ACCERT/tutorial
+      $ cd ACCERT/tutorial
 
 2. **Modify Reactor Parameters**
 

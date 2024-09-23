@@ -171,10 +171,10 @@ User can add a new total cost to the any account or cost element. Here is an exa
 - **total_cost**: Represents the cost element, it is the total cost of the Fuel storage building.
 - **value = 28149700 unit = dollar**: Represents the value of the total cost of the Fuel storage building in dollar.
 
-   .. admonition:: Important
-      :class: important
-      
-      ACCERT is a buttom-up cost estimator, adding total cost to higher level COA will not affect the total cost of the lower level COA, if a higher level COA has been assign a total cost, the cost element and all the lower level COA might not be accurate.
+.. admonition:: Important
+    :class: important
+    
+    ACCERT is a buttom-up cost estimator, adding total cost to higher level COA will not affect the total cost of the lower level COA, if a higher level COA has been assign a total cost, the cost element and all the lower level COA might not be accurate.
 
 Running the Example
 -------------------
