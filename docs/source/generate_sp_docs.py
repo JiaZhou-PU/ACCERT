@@ -9,10 +9,12 @@ sql_file_path = os.path.join(current_dir, '../..', 'src', 'accertdb.sql')
 # os.path.abspath('../src/accertdb.sql')
 sql_file_path = os.path.abspath(sql_file_path)
 # Output directory for Markdown files
-output_dir = 'source/reference/database/'
+# output_dir = 'source/reference/database/'
 
+output_dir = os.path.join(current_dir,'reference','database')
 # Path to the Toctree file
-toctree_file_path = 'source/reference/database.rst'
+# toctree_file_path = 'source/reference/database.rst'
+toctree_file_path = os.path.join(current_dir,'reference','database.rst')
 
 def clean_output_directory(directory):
     """
@@ -61,6 +63,10 @@ def generate_markdown_table(parameters):
     return table
 
 def main():
+    print(f"Reading SQL file from path: {sql_file_path}")
+    print(f"Output directory: {output_dir}")
+    print(f"Toctree file path: {toctree_file_path}")
+    
     # Step 1: Clean up old Markdown files
     clean_output_directory(output_dir)
 
