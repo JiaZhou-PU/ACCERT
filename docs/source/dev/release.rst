@@ -55,11 +55,11 @@ Performance Enhancements
 Version 0.1.0 (04/05/2023)
 --------------------------
 
-- [ACCERT relational database](https://github.com/accert-dev/ACCERT/blob/main/src/accertdb.sql)
-- [PWR-12BE case](https://github.com/accert-dev/ACCERT/blob/main/tutorial/PWR12-BE.son)
-- [ABR1000 case](https://github.com/accert-dev/ACCERT/blob/main/tutorial/ABR1000.son)
-- [Initial documentation](https://github.com/accert-dev/ACCERT/blob/main/README.md)
-- [Installation automation](https://github.com/accert-dev/ACCERT/blob/main/src/setup_accert.sh)
+- `ACCERT relational database <https://github.com/accert-dev/ACCERT/blob/main/src/accertdb.sql`_
+- `PWR-12BE case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/PWR12-BE.son`_
+- `ABR1000 case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/ABR1000.son`_
+- `Initial documentation <https://github.com/accert-dev/ACCERT/blob/main/README.md`_
+- `Installation automation <https://github.com/accert-dev/ACCERT/blob/main/src/setup_accert.sh`_
 
 Features
 ~~~~~~~~~~~~
