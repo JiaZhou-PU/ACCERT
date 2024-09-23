@@ -43,8 +43,8 @@ New Features
 
 7. **Enhanced Documentation**:
 
-    - Updated the documentation to reflect the new features and provide detailed instructions on how to use them.
-    - Added examples and explanations to help users understand the changes and how they can leverage the new functionality.
+   - Updated the documentation to reflect the new features and provide detailed instructions on how to use them.
+   - Added examples and explanations to help users understand the changes and how they can leverage the new functionality.
 
 Bug Fixes
 ~~~~~~~~~~~~
@@ -59,7 +59,7 @@ Performance Enhancements
 
 - **Stored Procedure Usage**:
 
-   - Replaced instances of the `execute` method with stored procedures for database interaction, leading to better performance and more consistent operations.
+  - Replaced instances of the `execute` method with stored procedures for database interaction, leading to better performance and more consistent operations.
 
 Version 0.1.0 (04/05/2023)
 --------------------------
