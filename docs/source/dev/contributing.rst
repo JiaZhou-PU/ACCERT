@@ -126,7 +126,7 @@ If you'd like to contribute code, follow these steps:
 
 7. **Open a Pull Request (PR)**:
 
-   - Go to the [original `ACCERT repository <https://github.com/accert-dev/ACCERT>` and open a new pull request:
+   - Go to the original `ACCERT repository <https://github.com/accert-dev/ACCERT>`_ and open a new pull request:
      - Make sure to describe the changes you’ve made in the PR description.
      - Include any relevant issue numbers (e.g., `Fixes #123`).
      - If applicable, provide context on why certain decisions were made.
