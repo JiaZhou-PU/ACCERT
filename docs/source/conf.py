@@ -27,9 +27,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 print(f'Current directory: {current_dir}')
 # Add the parent directory of 'src/' to sys.path
 sys.path.insert(0, os.path.join(accert_path, 'src'))
-
-# import src folder
-subprocess.run(['sphinx-apidoc', '-o', 'source/', '../../src/', '--force'])
+print(f'Sys path: {sys.path}')
 
 # -- Project information -----------------------------------------------------
 
