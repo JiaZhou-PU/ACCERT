@@ -179,20 +179,6 @@ title: {sp_name}
         append_to_toctree(sp_name)
         
     print("All stored procedures have been documented successfully.")
-    # show ls of the output directory
-    print(f"Output directory contents: {os.listdir(output_dir)}")
-    # show the contents of the toctree file
-    with open(toctree_file_path, 'r', encoding='utf-8') as toctree_file:
-        print(f"Contents of the Toctree file:\n{toctree_file.read()}")
-    # show the index file
-    index_file_path = os.path.join(current_dir, 'reference', 'index.rst')
-    with open(index_file_path, 'r', encoding='utf-8') as index_file:
-        print(f"Contents of the index file:\n{index_file.read()}")
-        
-
-
-
-
 
 if __name__ == '__main__':
     main()
