@@ -18,8 +18,8 @@ Reactor Model
        ...
    }
 
-- **`accert{}`**: Denotes the start of the ACCERT input configuration.
-- **`ref_model`**: Specifies the reference model as "ABR1000".
+- **accert{}**: Denotes the start of the ACCERT input configuration.
+- **ref_model**: Specifies the reference model as "ABR1000".
 
 Power Parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -36,8 +36,8 @@ Variables
 
 The ABR1000 example includes the following variables:
 
-- **`Cont_H_wall_m`**: Containment wall height (m).
-- **`c_pump_ap1000`**: Cost of the pump for the AP1000 reactor (million USD).
+- **Cont_H_wall_m**: Containment wall height (m).
+- **c_pump_ap1000**: Cost of the pump for the AP1000 reactor (million USD).
 
 .. code-block:: console
 

@@ -18,8 +18,8 @@ Reactor Model
     ...
     }
 
-- **`accert{}`**: Denotes the start of the ACCERT input configuration.
-- **`ref_model`**: Specifies the reference model as ``PWR12-BE``.
+- **accert{}**: Denotes the start of the ACCERT input configuration.
+- **ref_model**: Specifies the reference model as ``PWR12-BE``.
 
 Power Parameters
 ~~~~~~~~~~~~~~~~
@@ -35,8 +35,8 @@ These parameters are essential for scaling cost estimates based on the reactor's
     ...
     }
 
-- **`power(Thermal)`**: Specifies the thermal power output of the reactor.
-- **`power(Electric)`**: Specifies the electrical power output of the reactor.
+- **power(Thermal)**: Specifies the thermal power output of the reactor.
+- **power(Electric)**: Specifies the electrical power output of the reactor.
 
 Codes of Accounts (COA) Hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,9 +55,9 @@ The COA hierarchy for the fusion model is structured as follows:
         ...
     }
 
-- **`l0COA(2)`**: Represents the top-level COA category, it is the level 0 COA, 2 is the COA identifier which is the direct cost.
-- **`l1COA(21)`**: Represents the first-level COA category, it is the level 1 COA, 21 is the COA identifier which is the Structures and improvements subtotal.
-- **`l2COA(211)`**: Represents the second-level COA category, it is the level 2 COA, 211 is the COA identifier which is the Yardwork.
+- **l0COA(2)**: Represents the top-level COA category, it is the level 0 COA, 2 is the COA identifier which is the direct cost.
+- **l1COA(21)**: Represents the first-level COA category, it is the level 1 COA, 21 is the COA identifier which is the Structures and improvements subtotal.
+- **l2COA(211)**: Represents the second-level COA category, it is the level 2 COA, 211 is the COA identifier which is the Yardwork.
 
 Cost Element (CE) Hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,10 +73,10 @@ The cost element hierarchy for the Account 211 as follows:
         }
     }
 
-- **`ce("211_fac")`**: Represents the cost element, it is the factory cost element of the Yardwork.
-- **`alg("esc_1987")`**: Represents the algorithm used to calculate the cost element, which is the escalating based on the year 1987.
-- **`var(ref_211_fac)`**: Represents the reference value for the cost element factory cost of 211 in 1987.
-- **`var(ref_211_mat)`**: Represents the reference value for the cost element material cost of 211 in 1987.
+- **ce("211_fac")**: Represents the cost element, it is the factory cost element of the Yardwork.
+- **alg("esc_1987")**: Represents the algorithm used to calculate the cost element, which is the escalating based on the year 1987.
+- **var(ref_211_fac)**: Represents the reference value for the cost element factory cost of 211 in 1987.
+- **var(ref_211_mat)**: Represents the reference value for the cost element material cost of 211 in 1987.
 
 Super Variables
 ~~~~~~~~~~~~~~~
@@ -100,13 +100,13 @@ The super variables are used to define the variables that will be depending on o
         }
     }
 
-- **`l1COA(23)`**: Represents the first-level COA category, it is the level 1 COA, 23 is the COA identifier which is the Turbine plant equipment.
-- **`l2COA("231")`**: Represents the second-level COA category, it is the level 2 COA, 231 is the COA identifier which is the Turbine generator.
-- **`ce("231_fac")`**: Represents the cost element, it is the factory cost element of the Turbine generator.
-- **`alg("dev_factor_ref")`**: Represents the algorithm used to calculate the cost element, which is the develped factory equipment cost.
-- **`var("n_231")`**: Represents the super variable `The power function exponen` that will be depending on the variable p_in.
-- **`alg("tur_exp_n")`**: Represents the algorithm used to calculate the super variable, which is the `interpolating equation`.
-- **`var(p_in)`**: Represents the variable that the super variable will be depending on, which is `HP steam turbine inlet pressure`.
+- **l1COA(23)**: Represents the first-level COA category, it is the level 1 COA, 23 is the COA identifier which is the Turbine plant equipment.
+- **l2COA("231")**: Represents the second-level COA category, it is the level 2 COA, 231 is the COA identifier which is the Turbine generator.
+- **ce("231_fac")**: Represents the cost element, it is the factory cost element of the Turbine generator.
+- **alg("dev_factor_ref")**: Represents the algorithm used to calculate the cost element, which is the develped factory equipment cost.
+- **var("n_231")**: Represents the super variable `The power function exponen` that will be depending on the variable p_in.
+- **alg("tur_exp_n")**: Represents the algorithm used to calculate the super variable, which is the `interpolating equation`.
+- **var(p_in)**: Represents the variable that the super variable will be depending on, which is `HP steam turbine inlet pressure`.
 
 Unit Conversion
 ~~~~~~~~~~~~~~~
@@ -122,9 +122,9 @@ The unit conversion is used to convert the units of the variables. Here is an ex
     }
 
 
-- **`alg("unit_weights")`**: Represents the algorithm used to calculate the cost element, which is the unit weights.
-- **`var("c_221.12_cs_weight")`**: Represents the variable carben steel weight of the Vessel Structure unit in ton.
-- **`var("c_221.12_ss_weight")`**: Represents the variable stainless steel weight of the Vessel Structure unit in lbs.
+- **alg("unit_weights")**: Represents the algorithm used to calculate the cost element, which is the unit weights.
+- **var("c_221.12_cs_weight")**: Represents the variable carben steel weight of the Vessel Structure unit in ton.
+- **var("c_221.12_ss_weight")**: Represents the variable stainless steel weight of the Vessel Structure unit in lbs.
 
 Since the algorithm function required both parameters to be in the unit ton, the stainless steel weight will be converted to ton in ACCERT.
 
@@ -145,10 +145,10 @@ The user can add a new COA to the hierarchy. Here is an example of adding a new 
         }
     }
 
-- **`l2COA(new)`**: Represents the second-level COA category, it is the level 2 COA, new is the COA identifier which is the user added COA. The user added COA will assign under the COA 21.
-- **`newCOA(useraddcoa)`**: Represents the new COA that will be added to the hierarchy, useraddcoa is the COA identifier.
-- **`total_cost`**: Represents the cost element, it is the total cost of the user added COA.
-- **`value = 9 unit = million`**: Represents the value of the total cost of the user added COA in million.
+- **l2COA(new)**: Represents the second-level COA category, it is the level 2 COA, new is the COA identifier which is the user added COA. The user added COA will assign under the COA 21.
+- **newCOA(useraddcoa)**: Represents the new COA that will be added to the hierarchy, useraddcoa is the COA identifier.
+- **total_cost**: Represents the cost element, it is the total cost of the user added COA.
+- **value = 9 unit = million**: Represents the value of the total cost of the user added COA in million.
 
 
 Add User-defined total cost
@@ -167,9 +167,9 @@ User can add a new total cost to the any account or cost element. Here is an exa
     }
 
 
-- **`l2COA(217)`**: Represents the second-level COA category, it is the level 2 COA, 217 is the COA identifier which is the Fuel storage building.
-- **`total_cost`**: Represents the cost element, it is the total cost of the Fuel storage building.
-- **`value = 28149700 unit = dollar`**: Represents the value of the total cost of the Fuel storage building in dollar.
+- **l2COA(217)**: Represents the second-level COA category, it is the level 2 COA, 217 is the COA identifier which is the Fuel storage building.
+- **total_cost**: Represents the cost element, it is the total cost of the Fuel storage building.
+- **value = 28149700 unit = dollar**: Represents the value of the total cost of the Fuel storage building in dollar.
 
    .. admonition:: Important
       :class: important
