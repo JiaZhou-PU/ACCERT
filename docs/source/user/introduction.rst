@@ -18,9 +18,8 @@ ACCERT is a comprehensive software platform that:
 Key Features
 ------------
 
-- **Modular Architecture**: ACCERT is built with modular components, allowing users to concentrate on specific reactor sections or the entire system as needed.
 - **Customizable Parameters**: Enables adjustment of variables and parameters to align with specific reactor designs or project requirements.
-- **Extensive Databases**: Provides access to comprehensive cost data from reference reactor models, which can be tailored to new designs.
+- **Relational Databases**: Provides access to comprehensive cost data from reference reactor models, which can be tailored to new designs.
 - **Advanced Visualization**: Presents results through detailed tables, charts, and graphs to enhance analysis and presentation capabilities.
 
 Understanding the Code of Accounts (COA)
@@ -35,6 +34,10 @@ Central to ACCERT is the **Code of Accounts (COA)** system, which offers a stand
   - **Factory Equipment Costs**: Expenses related to equipment and machinery procurement.
   - **Labor Costs**: Costs associated with manpower required for construction, installation, and commissioning processes.
   - **Material Costs**: Expenditures for materials used, quantified in specific units (e.g., tons, cubic yards).
+
+   .. admonition:: Important
+      :class: important
+      ACCERT now allows cost estimates without cost categories, providing flexibility for users to customize their cost breakdowns.
 
 Using ACCERT with NEAMS Workbench
 ---------------------------------

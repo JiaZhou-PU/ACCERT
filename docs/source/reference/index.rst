@@ -1,7 +1,9 @@
 .. _reference:
 
-ACCERT Reference
+Reference
 ================
+
+
 
 .. toctree::
    :maxdepth: 1

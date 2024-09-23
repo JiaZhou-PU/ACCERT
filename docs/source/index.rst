@@ -36,7 +36,7 @@ Welcome to ACCERT's Documentation
 
     .. grid-item-card:: \ :octicon:`git-pull-request;2em` Developer's Guide
         :text-align: center
-        :link: dev/index
+        :link: reference/index
         :link-type: doc
 
         Interested in contributing to ACCERT? Our developer's guide provides
@@ -51,7 +51,7 @@ Welcome to ACCERT's Documentation
 
     .. grid-item-card:: \ :octicon:`comment-discussion;2em` Getting Help
         :text-align: center
-        :link: https://github.com/your-repo/ACCERT/discussions
+        :link: https://github.com/accert-dev/ACCERT/discussions
 
         Have questions? Click here for our discussions forum where you can ask
         questions and engage with our development team.
@@ -63,7 +63,7 @@ Welcome to ACCERT's Documentation
 
     user/index
     reference/index
-    reference/index
+    examples/index
     reference/index
 
 .. admonition:: Recommended publication for citing
