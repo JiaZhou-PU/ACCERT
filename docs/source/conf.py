@@ -29,6 +29,19 @@ print(f'Current directory: {current_dir}')
 sys.path.insert(0, os.path.join(accert_path, 'src'))
 print(f'Sys path: {sys.path}')
 
+
+# Importing project modules directly in conf.py can lead to unintended side effects.
+# It's generally recommended to avoid such imports unless necessary for debugging.
+
+try:
+    from Main import Accert
+    print("Successfully imported Accert class")
+except ImportError as e:
+    print("Failed to import Accert class:", e)
+    # Consider removing or modifying this print statement to avoid confusion
+
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'ACCERT'
