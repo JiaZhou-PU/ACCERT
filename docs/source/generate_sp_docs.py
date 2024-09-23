@@ -66,7 +66,7 @@ def main():
     print(f"Reading SQL file from path: {sql_file_path}")
     print(f"Output directory: {output_dir}")
     print(f"Toctree file path: {toctree_file_path}")
-    
+
     # Step 1: Clean up old Markdown files
     clean_output_directory(output_dir)
 
@@ -76,6 +76,7 @@ def main():
     # create a new toctree file
     with open(toctree_file_path, 'w', encoding='utf-8') as toctree_file:
             toctree_file.write(f"""
+                               
 Database Stored Procedures
 ==========================
 
@@ -178,6 +179,17 @@ title: {sp_name}
         append_to_toctree(sp_name)
         
     print("All stored procedures have been documented successfully.")
+    # show ls of the output directory
+    print(f"Output directory contents: {os.listdir(output_dir)}")
+    # show the contents of the toctree file
+    with open(toctree_file_path, 'r', encoding='utf-8') as toctree_file:
+        print(f"Contents of the Toctree file:\n{toctree_file.read()}")
+    # show the index file
+    index_file_path = os.path.join(current_dir, 'reference', 'index.rst')
+    with open(index_file_path, 'r', encoding='utf-8') as index_file:
+        print(f"Contents of the index file:\n{index_file.read()}")
+        
+
 
 
 

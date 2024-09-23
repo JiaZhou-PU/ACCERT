@@ -16,31 +16,13 @@
 
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('../../src'))
 import subprocess
 
 
 # Determine the absolute path to ACCERT
 accert_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-print(f'ACCERT path: {accert_path}')
 current_dir = os.path.dirname(os.path.abspath(__file__))
-print(f'Current directory: {current_dir}')
-# Add the parent directory of 'src/' to sys.path
 sys.path.insert(0, os.path.join(accert_path, 'src'))
-print(f'Sys path: {sys.path}')
-
-
-# Importing project modules directly in conf.py can lead to unintended side effects.
-# It's generally recommended to avoid such imports unless necessary for debugging.
-
-try:
-    from Main import Accert
-    print("Successfully imported Accert class")
-except ImportError as e:
-    print("Failed to import Accert class:", e)
-    # Consider removing or modifying this print statement to avoid confusion
-
-
 
 # -- Project information -----------------------------------------------------
 
