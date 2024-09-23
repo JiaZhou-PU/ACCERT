@@ -66,6 +66,7 @@ Welcome to ACCERT's Documentation
     examples/index
     reference/index
 
+
 .. admonition:: Recommended publication for citing
    :class: tip
 
