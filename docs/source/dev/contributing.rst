@@ -15,10 +15,10 @@ Getting Started
 2. **Clone the Forked Repository**:
    - Clone your fork to your local machine:
      
-    .. code-block:: console
-    
-     git clone https://github.com/YOUR-USERNAME/ACCERT.git
-     cd ACCERT
+.. code-block:: console
+
+    git clone https://github.com/YOUR-USERNAME/ACCERT.git
+    cd ACCERT
 
 3. **Create a Branch**:
    - It's best practice to create a new branch for each feature or fix you are working on:
@@ -31,23 +31,26 @@ Getting Started
    - Ensure you have Python installed and set up your virtual environment and install the required dependencies by running:
 
      
-    .. code-block:: console
+.. code-block:: console
 
-     python3 -m venv venv
-     source venv/bin/activate  # On Windows use: venv\Scripts\activate
-     pip install -r requirements.txt
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    pip install -r requirements.txt
 
 5. **Run Tests**:
    - Before making any changes, run the existing test suite to ensure everything works as expected:
 
-    .. code-block:: console
+.. code-block:: console
 
-     pytest
+    pytest
 
 Contribution Guidelines
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
-### Reporting Bugs
+When contributing to ACCERT, please follow these guidelines:
+
+Reporting Bugs
+^^^^^^^^^^^^^^
 
 If you encounter a bug, please report it by following these steps:
 
@@ -62,7 +65,8 @@ If you encounter a bug, please report it by following these steps:
      - Relevant logs or error messages.
      - The environment you are using (e.g., OS, Python version).
 
-### Suggesting Enhancements
+Suggesting Enhancements
+^^^^^^^^^^^^^^^^^^^^^^^
 
 If you have ideas for improving ACCERT, we encourage you to suggest enhancements.
 
@@ -75,7 +79,8 @@ If you have ideas for improving ACCERT, we encourage you to suggest enhancements
      - How do you envision the feature being implemented?
      - Include any relevant examples or use cases.
 
-### Submitting Code Changes
+Submitting Code Changes
+^^^^^^^^^^^^^^^^^^^^^^^
 
 If you'd like to contribute code, follow these steps:
 
@@ -92,24 +97,24 @@ If you'd like to contribute code, follow these steps:
 4. **Run Tests**:
    - Ensure that all tests pass:
      
-    .. code-block:: console
+.. code-block:: console
 
-     pytest
+    pytest
 
 
 5. **Commit Your Changes**:
    - Write clear, concise commit messages that explain the purpose of the change:
 
-    .. code-block:: console
+.. code-block:: console
 
-     git commit -m "Add new feature: description"
+    git commit -m "Add new feature: description"
 
 6. **Push to GitHub**:
    - Push your branch to your forked repository:
      
-    .. code-block:: console
+.. code-block:: console
 
-     git push origin my-new-feature
+    git push origin my-new-feature
 
 
 7. **Open a Pull Request (PR)**:
@@ -118,7 +123,8 @@ If you'd like to contribute code, follow these steps:
      - Include any relevant issue numbers (e.g., `Fixes #123`).
      - If applicable, provide context on why certain decisions were made.
 
-### Reviewing and Merging
+Reviewing and Merging
+^^^^^^^^^^^^^^^^^^^^^^
 
 Once your PR is submitted, it will be reviewed by one of the maintainers. Here’s what you can expect:
 
