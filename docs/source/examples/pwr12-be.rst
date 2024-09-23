@@ -173,6 +173,7 @@ User can add a new total cost to the any account or cost element. Here is an exa
 
    .. admonition:: Important
       :class: important
+      
       ACCERT is a buttom-up cost estimator, adding total cost to higher level COA will not affect the total cost of the lower level COA, if a higher level COA has been assign a total cost, the cost element and all the lower level COA might not be accurate.
 
 Running the Example
