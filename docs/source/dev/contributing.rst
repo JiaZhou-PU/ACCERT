@@ -49,10 +49,6 @@ Getting Started
 
     pytest
 
-Contribution Guidelines
-~~~~~~~~~~~~~~~~~~~~~~~
-
-When contributing to ACCERT, please follow these guidelines:
 
 Reporting Bugs
 ^^^^^^^^^^^^^^
