@@ -77,7 +77,9 @@ If you have ideas for improving ACCERT, we encourage you to suggest enhancements
    - Search the `Issues section <https://github.com/accert-dev/ACCERT/issues>`_ for existing enhancement requests.
 
 2. **Propose a New Feature**:
+
    - Open a new issue with the **Feature Request** template and provide as much detail as possible about the feature:
+
      - What problem does the enhancement solve?
      - How do you envision the feature being implemented?
      - Include any relevant examples or use cases.
@@ -123,6 +125,7 @@ If you'd like to contribute code, follow these steps:
 7. **Open a Pull Request (PR)**:
 
    - Go to the original `ACCERT repository <https://github.com/accert-dev/ACCERT>`_ and open a new pull request:
+
      - Make sure to describe the changes you’ve made in the PR description.
      - Include any relevant issue numbers (e.g., `Fixes #123`).
      - If applicable, provide context on why certain decisions were made.
@@ -133,12 +136,15 @@ Reviewing and Merging
 Once your PR is submitted, it will be reviewed by one of the maintainers. Here’s what you can expect:
 
 1. **Feedback**:
+
    - You may receive feedback on your PR. Be open to making adjustments or clarifications as needed.
    
 2. **Revisions**:
+
    - If changes are requested, push the revisions to your branch. This will automatically update your PR.
    
 3. **Merging**:
+
    - Once approved, your PR will be merged into the main branch. You may also be asked to rebase your branch if there are conflicts.
 
 
