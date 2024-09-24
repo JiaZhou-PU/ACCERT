@@ -1,0 +1,9 @@
+﻿ind,code_of_account,account_description,total_cost,level,supaccount,review_status,prn,alg_name,fun_unit,variables
+1,2,User defined direct cost,1000000000,0,,Unchanged,1,,million,
+2,21,User defined total cost 21,700000000,1,2,Unchanged,0.140959043,,million,
+3,211,User defined total cost 211,100000000,2,21,Unchanged,0.006372272,ud211,million,"v1, v2, v3"
+4,212,User defined total cost 212,200000000,2,21,Unchanged,0.08185506,ud212,million,"v1, v2, v3"
+5,213,User defined total cost 213,400000000,2,21,Unchanged,0.006879157,,million,"v1, v2, v4"
+7,2131,User defined total cost 2131,150000000,3,213,Unchanged,0.018658385,ud2131,million,"v3, v2, v5"
+8,2132,User defined total cost 27,250000000,3,213,Unchanged,0.010434826,ud2132,million,"v8, v2, v6"
+9,22,User defined total cost 28,300000000,2,22,Unchanged,0.002679251,ud22,million,"v5, v8, v7"
