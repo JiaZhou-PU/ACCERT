@@ -12,8 +12,10 @@ New Features
 1. **GNCOA vs. EEDB COA Output Ordering**:
 
    - ACCERT now supports choosing between two output formats:
+
      - **GNCOA (Generalize Nuclear Code of Accounts )**
      - **EEDB COA (Energy Economic Database Cost Code of Acounts)**
+
    - This provides flexibility depending on the user's needs and the project’s cost accounting framework.
 
 2. **Fusion Model Integration**:
@@ -64,11 +66,15 @@ Performance Enhancements
 Version 0.1.0 (04/05/2023)
 --------------------------
 
-`ACCERT relational database <https://github.com/accert-dev/ACCERT/blob/main/src/accertdb.sql`_
-`PWR-12BE case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/PWR12-BE.son`_
-`ABR1000 case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/ABR1000.son`_
-`Initial documentation <https://github.com/accert-dev/ACCERT/blob/main/README.md`_
-`Installation automation <https://github.com/accert-dev/ACCERT/blob/main/src/setup_accert.sh`_
+`ACCERT relational database <https://github.com/accert-dev/ACCERT/blob/main/src/accertdb.sql>`_
+
+`PWR-12BE case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/PWR12-BE.son>`_
+
+`ABR1000 case <https://github.com/accert-dev/ACCERT/blob/main/tutorial/ABR1000.son>`_
+
+`Initial documentation <https://github.com/accert-dev/ACCERT/blob/main/README.md>`_
+
+`Installation automation <https://github.com/accert-dev/ACCERT/blob/main/src/setup_accert.sh>`_
 
 New Features
 ~~~~~~~~~~~~
