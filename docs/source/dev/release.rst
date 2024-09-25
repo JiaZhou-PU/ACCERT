@@ -13,8 +13,8 @@ New Features
 
    - ACCERT now supports choosing between two output formats:
 
-     - **GNCOA (Generation IV Nuclear Cost Object Accounting)**
-     - **EEDB COA (Energy Economic Database Cost Object Accounting)**
+     - **GNCOA (Generalize Nuclear Code of Accounts)**
+     - **EEDB COA (Energy Economic Database Cost Code of Acounts)**
 
    - This provides flexibility depending on the user's needs and the project’s cost accounting framework.
 
