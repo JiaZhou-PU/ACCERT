@@ -10,7 +10,7 @@ accert{
         MaxOccurs = 1
         InputTmpl = "ref_model"
         ValType = String
-        ValEnums = [REF:ref_models]
+        ValEnums = [ REF:user_defined_names  REF:ref_models]
         }            
 
     power{
@@ -22,7 +22,7 @@ accert{
             MinOccurs = 1
             MaxOccurs = 1
             ValType = String
-            ValEnums = [ Thermal Electric]
+            ValEnums = [ REF:user_defined_names REF:power_type]
         }
         value{
             Description = "[required] variable value "
@@ -37,7 +37,7 @@ accert{
             MinOccurs = 1
             MaxOccurs = 1
             ValType = String
-            ValEnums = [ W kW MW]
+            ValEnums = [ REF:user_defined_names REF:power_unit]
         }
     }
     var{
@@ -49,7 +49,7 @@ accert{
             MinOccurs = 1
             MaxOccurs = 1
             ValType = String
-            ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+            ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
         }
         value{
             MinOccurs = 1
@@ -62,7 +62,7 @@ accert{
             MinOccurs = 1
             MaxOccurs = 1
             ValType = String
-            ValEnums = [REF:unit_names]
+            ValEnums = [ REF:user_defined_names  REF:unit_names]
         }
     }
     l0COA{
@@ -74,7 +74,7 @@ accert{
             MinOccurs = 0
             MaxOccurs = 1
             ValType = String
-            ValEnums = [ REF:l0COA_names]
+            ValEnums = [ REF:user_defined_names   REF:l0COA_names]
         }
         l1COA{
         	Description = "level 1 code of account"
@@ -85,7 +85,7 @@ accert{
                 MinOccurs = 0
                 MaxOccurs = 1
                 ValType = String
-                ValEnums = [REF:l1COA_names ]
+                ValEnums = [ REF:user_defined_names  REF:l1COA_names ]
             }
             total_cost{
                 Description = "total cost value"
@@ -103,7 +103,7 @@ accert{
                     MinOccurs = 1
                     MaxOccurs = 1
                     ValType = String
-                    ValEnums = [ million  dollar]
+                    ValEnums = [ REF:user_defined_names   million  dollar]
                 }                                
             }
             % there is no cost element in this level
@@ -116,7 +116,7 @@ accert{
                     MinOccurs = 0
                     MaxOccurs = 1
                     ValType = String
-                    ValEnums = [REF:l2COA_names] 
+                    ValEnums = [ REF:user_defined_names  REF:l2COA_names] 
                 }
                 total_cost{
                     Description = "total cost value"
@@ -134,7 +134,7 @@ accert{
                         MinOccurs = 1
                         MaxOccurs = 1
                         ValType = String
-                        ValEnums = [ million  dollar]
+                        ValEnums = [ REF:user_defined_names REF:total_cost_unit ]
                     }                            
                 }
                 ce{
@@ -146,7 +146,7 @@ accert{
                         MinOccurs = 0
                         MaxOccurs = 1
                         ValType = String
-                        ValEnums = [REF:L2cost_element_names]
+                        ValEnums = [ REF:user_defined_names  REF:L2cost_element_names]
                     }
                     alg{
         				Description = "???" % needs to be added
@@ -157,7 +157,7 @@ accert{
                             MinOccurs = 0
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums = [REF:alg_names REF:fusion_alg_names]
+                            ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names]
                         }
                         var{
                             Description = "changed variable value"
@@ -168,7 +168,7 @@ accert{
                                 MinOccurs = 1
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names 
+                                ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names 
                                 REF:heatpipe_var_names
                                 REF:fusion_var_names]
                             }
@@ -183,7 +183,7 @@ accert{
                                 MinOccurs = 0
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums = [REF:unit_names]
+                                ValEnums = [ REF:user_defined_names  REF:unit_names]
                             }
                             alg{ % is this an alg within var within alg???? it should use a different name to avoid confusion.
                                 Description = "valriable algorithm"
@@ -194,7 +194,7 @@ accert{
                                     MinOccurs = 1
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                                    ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                                 }
                                 var{
                                     Description = "changed variable value"
@@ -205,7 +205,7 @@ accert{
                                         MinOccurs = 1
                                         MaxOccurs = 1
                                         ValType = String
-                                        ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                        ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                                     }
                                     value{
                                         MinOccurs = 1
@@ -218,7 +218,7 @@ accert{
                                         MinOccurs = 1
                                         MaxOccurs = 1
                                         ValType = String
-                                        ValEnums = [ REF:unit_names ]
+                                        ValEnums = [ REF:user_defined_names   REF:unit_names ]
                                     }
                                 }
                             }                           
@@ -230,7 +230,7 @@ accert{
                         MinOccurs = 1
                         MaxOccurs = 1
                         ValType = String
-                        ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                        ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                     }
                     var{
                         Description = "changed variable value"
@@ -240,7 +240,7 @@ accert{
                             MinOccurs = 1
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                            ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                         }
                         value{
                             MinOccurs = 0
@@ -253,7 +253,7 @@ accert{
                             MinOccurs = 0
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums = [REF:unit_names]
+                            ValEnums = [ REF:user_defined_names  REF:unit_names]
                         }
                         alg{
                             Description = "valriable algorithm"
@@ -263,7 +263,7 @@ accert{
                                 MinOccurs = 1
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                                ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                             }
                             var{
                                 Description = "changed variable value"
@@ -273,7 +273,7 @@ accert{
                                     MinOccurs = 1
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                    ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                                 }
                                 value{
                                     MinOccurs = 1
@@ -286,7 +286,7 @@ accert{
                                     MinOccurs = 1
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums = [REF:unit_names]
+                                    ValEnums = [ REF:user_defined_names  REF:unit_names]
                                 }
                             }
                         }
@@ -298,7 +298,7 @@ accert{
                         MinOccurs = 0
                         MaxOccurs = 1
                         ValType = String
-                        ValEnums = [ REF:l3COA_names ]
+                        ValEnums = [ REF:user_defined_names   REF:l3COA_names ]
                     }
                     total_cost{
                         Description = "total cost value"
@@ -315,7 +315,7 @@ accert{
                             MinOccurs = 1
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums = [ million  dollar]
+                            ValEnums = [ REF:user_defined_names   million  dollar]
                         }                            
                     }
                     alg{
@@ -323,7 +323,7 @@ accert{
                             MinOccurs = 1
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                            ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                         }
                         var{
                             Description = "changed variable value"
@@ -333,7 +333,7 @@ accert{
                                 MinOccurs = 1
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                             }
                             value{
                                 MinOccurs = 0
@@ -346,7 +346,7 @@ accert{
                                 MinOccurs = 0
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums = [REF:unit_names]
+                                ValEnums = [ REF:user_defined_names  REF:unit_names]
                             }
                             alg{
                                 Description = "valriable algorithm"
@@ -356,7 +356,7 @@ accert{
                                     MinOccurs = 1
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                                    ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                                 }
                                 var{
                                     Description = "changed variable value"
@@ -366,7 +366,7 @@ accert{
                                         MinOccurs = 1
                                         MaxOccurs = 1
                                         ValType = String
-                                        ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                        ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                                     }
                                     value{
                                         MinOccurs = 1
@@ -379,7 +379,7 @@ accert{
                                         MinOccurs = 1
                                         MaxOccurs = 1
                                         ValType = String
-                                        ValEnums = [REF:unit_names]
+                                        ValEnums = [ REF:user_defined_names  REF:unit_names]
                                     }
                                 }
                             }
@@ -391,14 +391,14 @@ accert{
                             MinOccurs = 0
                             MaxOccurs = 1
                             ValType = String
-                            ValEnums = [REF:L3cost_element_names ]
+                            ValEnums = [ REF:user_defined_names  REF:L3cost_element_names ]
                         }
                         alg{
                             id{
                                 MinOccurs = 1
                                 MaxOccurs = 1
                                 ValType = String
-                                ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                                ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                             }
                             var{
                                 Description = "changed variable value"
@@ -408,7 +408,7 @@ accert{
                                     MinOccurs = 1
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                    ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                                 }
                                 value{
                                     MinOccurs = 0
@@ -421,7 +421,7 @@ accert{
                                     MinOccurs = 0
                                     MaxOccurs = 1
                                     ValType = String
-                                    ValEnums = [REF:unit_names]
+                                    ValEnums = [ REF:user_defined_names  REF:unit_names]
                                 }
                                 alg{
                                     Description = "valriable algorithm"
@@ -431,7 +431,7 @@ accert{
                                         MinOccurs = 1
                                         MaxOccurs = 1
                                         ValType = String
-                                        ValEnums = [REF:alg_names REF:fusion_alg_names ]
+                                        ValEnums = [ REF:user_defined_names  REF:alg_names REF:fusion_alg_names ]
                                     }
                                     var{
                                         Description = "changed variable value"
@@ -441,7 +441,7 @@ accert{
                                             MinOccurs = 1
                                             MaxOccurs = 1
                                             ValType = String
-                                            ValEnums =[REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
+                                            ValEnums =[ REF:user_defined_names REF:pwr_var_names REF:abr_var_names REF:containment_var_names REF:heatpipe_var_names REF:fusion_var_names]
                                         }
                                         value{
                                             MinOccurs = 1
@@ -454,7 +454,7 @@ accert{
                                             MinOccurs = 1
                                             MaxOccurs = 1
                                             ValType = String
-                                            ValEnums = [REF:unit_names]
+                                            ValEnums = [ REF:user_defined_names  REF:unit_names]
                                         }
                                     }
                                 }
@@ -486,6 +486,9 @@ accert{
 
 EndOfSchema{}
 ref_models = [ "PWR12-BE" "ABR1000" "LFR", "heatpipe","fusion"]
+power_type = ["Thermal" "Electric"] 
+power_unit = ["W" "kWW" "MW"]
+total_cost_unit = ["million" "dollar"]
 l0COA_names = ['1' '2' '3' '4' '5' '6' '7' '8' '9' 'new']
 l0GNCOA_names=['10' '20' '30' '40' '50' '60' '70' '80' '90' 'new']
 l1COA_names = ['11' '12' '13' '14' '15' '16' '17' '18' '19' 
@@ -769,3 +772,5 @@ containment_var_names = ['CPI' 'Void_fraction' 'liner_fraction' 'Cont_H_tot_m' '
 heatpipe_var_names = ['land_surface_area' 'containment_subVolume' 'Containment_hole_volume' 'Turbine_building_surface_area' 'Distance_to_utilities' 'Number_of_shipping_containers' 'Battery_capacity_required' 'primary_outer_vessel_SS_mass' 'primary_inner_vessel_SS_mass' 'B4C_total_neutron_poison_mass_Kg' 'Number_of_control_rod_drums' 'number_of_emergency_control_rods' 'stainless_steel_316_reflector_mass' 'Al2O3_reflector_mass' 'BeO_reflector_mass' 'shield_B4C_mass' 'moderator_ZrH_mass' 'mass_production_cost_reduction_factor' 'number_of_core_cooling_heat_pipes' 'number_of_heat_exchangers' 'heat_exchangers_mass' 'number_of_IO_sensors' 'mwth' 'mwe']
 
 fusion_var_names = ['a' 'acptmax' 'admvol' 'afuel' 'ai' 'aintmass' 'akappa' 'areaoh' 'awpoh' 'b0' 'blmass' 'cconfix' 'cconshpf' 'cconshtf' 'cdirt' 'cdriv0' 'cdriv1' 'cdriv2' 'cdriv3' 'cfind_0' 'cfind_1' 'cfind_2' 'cfind_3' 'cland' 'clgsmass' 'coilmass' 'convol' 'coolmass' 'coolwh' 'cowner' 'cpstcst' 'cpttf' 'crypmw' 'cryvol' 'csi' 'cturbb' 'd_0' 'd_1' 'd_2' 'd_3' 'dcdrv0' 'dcdrv1' 'dcdrv2' 'dcond_0' 'dcond_1' 'dcond_2' 'dcond_3' 'dcond_4' 'dcond_5' 'dcond_6' 'dcond_7' 'dcond_8' 'dcopper' 'dens' 'divcst' 'divsur' 'dlscal' 'drbi' 'dtstor' 'dvrtmass' 'ealphadt' 'echarge' 'echpwr' 'edrive' 'effrfss' 'elevol' 'ensxpfm' 'esbldgm3' 'estotftgj' 'etadrv' 'expel' 'expepe' 'exphts' 'exprb' 'exprf' 'exptpe' 'faccd' 'faccdfix' 'fachtmw' 'fburn' 'fcap0' 'fcdfuel' 'fcontng' 'fcsht' 'fcuohsu' 'fcupfsu' 'fkind' 'fncmass' 'fndt' 'ftrit' 'fusionrate' 'fwallcst' 'fwarea' 'fwmass' 'fwmatm' 'gain' 'gsmass' 'hccl' 'hcwt' 'helpow' 'hrbi' 'i_tf_sc_mat' 'i_tf_sup' 'iblanket' 'iefrf' 'ife' 'ifedrv' 'ifueltyp' 'imax' 'iohcl' 'ipfres' 'ireactor' 'istore' 'isumatoh' 'isumatpf' 'itart' 'l1' 'lpulse' 'lsa' 'ltot' 'mbvfac' 'mcdriv' 'n_tf' 'n_tf_turn' 'nohc' 'nphx' 'ntype' 'nvduct' 'oh_steel_frac' 'pacpmw' 'palpnb' 'peakmva' 'pfbldgm3' 'pfckts' 'pfmass' 'pfwdiv' 'pfwndl' 'pgrossmw' 'pheat' 'pibv' 'pinjht' 'pinjwp' 'plascur' 'plhybd' 'pnbitot' 'pnetelmw' 'pnucblkt' 'pnucshld' 'powfmw' 'pthermmw' 'r0' 'rbrt' 'rbvfac' 'rbvol' 'rbwt' 'reprat' 'ric_0' 'ric_1' 'ric_2' 'ric_3' 'ric_4' 'ric_5' 'ric_6' 'rjconpf_0' 'rjconpf_1' 'rjconpf_2' 'rjconpf_3' 'rjconpf_4' 'rjconpf_5' 'rjconpf_6' 'rjconpf_7' 'rjconpf_8' 'rjconpf_9' 'rjconpf_10' 'rjconpf_11' 'rjconpf_12' 'rjconpf_13' 'rjconpf_14' 'rjconpf_15' 'rjconpf_16' 'rjconpf_17' 'rjconpf_18' 'rjconpf_19' 'rjconpf_20' 'rjconpf_21' 'rpf_0' 'rpf_1' 'rpf_2' 'rpf_3' 'rpf_4' 'rpf_5' 'rpf_6' 'shmatm' 'spfbusl' 'srcktpm' 'stcl' 'tdown' 'tdspmw' 'tf_h_width ' 'tfacmw' 'tfbusl' 'tfbusmas' 'tfcbv' 'tfckw' 'tfcmw' 'tfhmax' 'tfleng' 'tfmass' 'tlvpmw' 'tmpcry' 'trcl' 'trithtmw' 'triv' 'turns_0' 'turns_1' 'turns_2' 'turns_3' 'turns_4' 'turns_5' 'turns_6' 'twopi' 'ucad' 'ucaf' 'ucahts' 'ucap' 'ucblbe' 'ucblbreed' 'ucblli' 'ucblli2o' 'ucbllipb' 'ucblss' 'ucblvd' 'ucbpmp' 'ucbus' 'uccarb' 'uccase' 'ucco' 'ucconc' 'uccpcl1' 'uccpclb' 'uccpmp' 'uccr' 'uccry' 'uccryo' 'uccu' 'ucdgen' 'ucdiv' 'ucdtc' 'ucduct' 'ucech' 'ucel' 'ucf1' 'ucfnc' 'ucfpr' 'ucfwa' 'ucfwps' 'ucfws' 'ucgss' 'uchrs' 'uchts_0' 'uchts_1' 'uciac' 'ucich' 'ucint' 'uclh' 'uclv' 'ucmb' 'ucme' 'ucmisc' 'ucnbi' 'ucnbv' 'ucpens' 'ucpfb' 'ucpfbk' 'ucpfbs' 'ucpfcb' 'ucpfdr1' 'ucpfic' 'ucpfps' 'ucphx' 'ucpp' 'ucrb' 'ucsc_0' 'ucsc_1' 'ucsc_2' 'ucsc_3' 'ucsc_4' 'ucsc_5' 'ucsc_6' 'ucsc_7' 'ucsc_8' 'ucsh' 'ucshld' 'ucswyd' 'uctfbr' 'uctfbus' 'uctfdr' 'uctfgr' 'uctfic' 'uctfps' 'uctfsw' 'uctpmp' 'uctr' 'ucturb_0' 'ucturb_1' 'ucvalv' 'ucvdsh' 'ucviac' 'ucwindpf' 'ucwindtf' 'umass' 'vacdshm' 'vachtmw' 'vcdimax' 'vf' 'vfohc' 'vol' 'volrci' 'vpfskv' 'vpumpn' 'vtfskv' 'vvmass' 'wgt2' 'whtblbe' 'whtblbreed' 'whtblli' 'whtblss' 'whtblvd' 'whtcas' 'whtconcu' 'whtconsc' 'whtcp' 'whtpfs' 'whtshld' 'whttflgs' 'wpenshld' 'wrbi' 'wsvfac' 'wsvol' 'wtblli2o' 'wtbllipb' 'rmbvol' 'ucws' 'shovol' 'expcry']
+
+user_defined_names = ['user_defined' 'ud211' 'ud212' 'ud2131' 'ud2132' 'ud_cal_v6' '2' '21' '211' '212' '213' '2131' '2132' '22' 'v1' 'v2' 'v3' 'v4' 'v5' 'v6' 'v7' 'v8' ]

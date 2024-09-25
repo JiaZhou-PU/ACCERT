@@ -35,7 +35,6 @@ class Accert:
         self.acc_tabl = None
         self.cel_tabl = None
         self.var_tabl = None
-        # self.vlk_tabl = None
         self.alg_tabl = None
         self.esc_tabl = None
         self.fac_tabl = None
@@ -93,6 +92,14 @@ class Accert:
             self.cel_tabl = None
             self.var_tabl = 'fusion_varv'
             self.alg_tabl = 'fusion_alg'
+            self.esc_tabl = 'escalation'
+            self.fac_tabl = 'facility'
+        else:
+            self.ref_model = 'user_defined'
+            self.acc_tabl = 'user_defined_account'
+            self.cel_tabl = None
+            self.var_tabl = 'user_defined_variable'
+            self.alg_tabl = 'user_defined_algorithm'
             self.esc_tabl = 'escalation'
             self.fac_tabl = 'facility'
         return None
@@ -508,7 +515,11 @@ class Accert:
             # var_value_lst.append(get_var_value_by_name(c, var_name))
             variables['v_{}'.format(var_ind+1)] = self.get_var_value_by_name(c, var_name)
         print('[Updating] Sup Variable {}, running algorithm: [{}], \n[Updating] with formulation: {}'.format(sup_var_name, alg_name, alg_form))
-        alg_value = self.run_pre_alg(alg, **variables)
+        if self.cel_tabl:
+            alg_value = self.run_pre_alg(alg, **variables)
+        else:
+            print('alg_name:',alg_name,"alg:",alg,"variables:",variables)
+            alg_value = self.update_account_value(alg, alg_name, variables)
         self.update_input_variable(c,sup_var_name,alg_value,sup_var_unit,quite = True)
         if alg_unit == '1':
             alg_unit=''
@@ -824,7 +835,7 @@ class Accert:
         Parameters
         ----------
         alg_py : str
-            Algorithm in python.
+            Algorithm file alg_py.py
         alg_name : str
             Algorithm name.my
         variables : dict
@@ -1365,7 +1376,7 @@ class Accert:
         self.setup_table_names(accert)
         ut.setup_table_names(c, Accert)
         # if ref.model is not fusion or user defined then process cost elements:
-        if Accert.ref_model != "fusion":
+        if self.cel_tabl:
             ut.print_user_request_parameter(c)
         else:
             pass
@@ -1483,7 +1494,7 @@ class Accert:
                 print('[USER_INPUT]', 'New account', user_added_coa, user_added_coa_desc, user_added_coa_total_cost, '\n')
                 self.insert_COA(c, str(parent_id),user_added_coa,user_added_coa_desc,user_added_coa_total_cost)
             # if ref.model is not fusion then process cost elements:
-            if self.ref_model!="fusion":
+            if self.cel_tabl:
                 self.process_ce(c, account)
             else:
                 if account.alg:
@@ -1494,7 +1505,7 @@ class Accert:
                                     self.process_var(c, var)
                                 else:
                                     self.process_alg(c, var)
-                elif accout.var:
+                elif account.var:
                     for var in account.var:
                         self.process_var(c, var)
             for i in range(3, 7):
@@ -1709,7 +1720,7 @@ class Accert:
         ut.extract_user_changed_variables(c)
         # if the model is not fusion or user assigned then process the cost elements
         # NOTE: Accert is the instance of the Accert class use Capital A
-        if Accert.ref_model!="fusion" and Accert.ref_model!="user_assigned":
+        if self.cel_tabl:
             # NOTE the extract_affected_cost_elements will not be executed for fusion model
             ut.extract_affected_cost_elements(c)
             self.update_new_cost_elements(c)
@@ -1735,10 +1746,10 @@ class Accert:
             xml2obj class instantiates objects that can parse the ACCERT XML file.
         """
         model = Accert.ref_model
-        if model in ["abr1000", "heatpipe", "lfr", "pwr12-be", "fusion"]:
+        if model:
             # generate results for the models in the future we can add more models
             self._generate_common_results(c, ut, accert, model)
-            if model != "fusion":
+            if self.cel_tabl:
                 self.generate_results_table_with_cost_elements(c, conn, level=3)
         self.generate_results_table(c, conn, level=3)
 
@@ -1764,8 +1775,8 @@ class Accert:
             self._print_results(ut, c, fac, lab, mat, all_flag)
         elif model == "pwr12-be":
             self._pwr12be_processing(c, ut, accert)
-        elif model == "fusion":
-            self._fusion_processing(c, ut, accert)
+        else:
+            self._no_cost_element_processing(c, ut, accert)
 
     def _common_cost_processing(self, c, accert):
         """
@@ -1828,7 +1839,7 @@ class Accert:
         print('\n') 
         ut.print_leveled_accounts(c, all=True, cost_unit='million', level=3)
 
-    def _fusion_processing(self, c, ut, accert):
+    def _no_cost_element_processing(self, c, ut, accert):
         """
         Processing for the fusion model.
 
