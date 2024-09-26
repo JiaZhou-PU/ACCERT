@@ -113,9 +113,9 @@ Setting Up ACCERT
    - Set the `workbench_path` variable to point to your NEAMS Workbench installation directory.
      - For example:
 
-       .. code-block:: shell
+   .. code-block:: shell
 
-           workbench_path="C:/Path/To/Workbench-<version-number>"
+      workbench_path="C:/Path/To/Workbench-<version-number>"
 
      - Replace `<version-number>` with the actual version number (e.g., `Workbench-5.3.1`).
      - **Ensure there are no spaces in the folder path**, as this may cause issues.
@@ -136,7 +136,7 @@ Setting Up ACCERT
 
    - Manually create a `bin` directory inside your `ACCERT` folder if it doesn't exist.
    - Navigate to the `bin` folder inside your NEAMS Workbench installation.
-   - Copy `sonvalidxml` and `docprint` from the Workbench `bin` folder to the `ACCERT/bin` folder.
+   - Copy `sonvalidxml` from the Workbench `bin` folder to the `ACCERT/bin` folder.
 
 Create and Edit `install.conf`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -163,6 +163,38 @@ Create and Edit `install.conf`
    - **Ensure file extensions are visible**:
      - In File Explorer, go to `View` > `Show` > `File name extensions`.
      - Verify that the file is not saved as `install.conf.txt`.
+
+Install database
+~~~~~~~~~~~~~~~~
+
+1. **Navigate to ACCERT/src folder**:
+   - type "cmd" in the address bar of the file explorer and press enter.
+   
+   .. code-block:: shell
+
+      $ mysql -h localhost -u root -p 
+
+   - Enter your MySQL root password when prompted.
+   - Run the following command to create the ACCERT database:
+   
+   .. code-block:: shell
+
+      mysql> source accertdb.sql
+   
+   - Verify that the database has been created by running the following command:
+   
+   .. code-block:: shell
+
+      mysql> show databases;
+
+   - You should see `accert_db` in the list of databases. Then exit the MySQL shell by typing:
+
+   .. code-block:: shell
+
+      mysql> \q
+
+
+   
 
 
 Installation on macOS
@@ -286,6 +318,35 @@ Create and Edit `install.conf`
    - **Ensure file extensions are visible**:
      - In File Explorer, go to `View` > `Show` > `File name extensions`.
      - Verify that the file is not saved as `install.conf.txt`.
+
+Install database
+~~~~~~~~~~~~~~~~
+
+1. ** connect to MySQL**:
+   .. code-block:: shell
+
+      $ mysql -h localhost -u root -p 
+
+   - Enter your MySQL root password when prompted.
+   - Run the following command to create the ACCERT database:
+   
+   .. code-block:: shell
+
+      mysql> source accertdb.sql
+   
+   - Verify that the database has been created by running the following command:
+   
+   .. code-block:: shell
+
+      mysql> show databases;
+
+   - You should see `accert_db` in the list of databases. Then exit the MySQL shell by typing:
+
+   .. code-block:: shell
+
+      mysql> \q
+
+
 
 
 
@@ -425,9 +486,33 @@ Create and Edit `install.conf`
 
    - Replace ``yourpassword`` with your MySQL root password.
    - Save the file with the exact name `install.conf`.
-   - **Ensure file extensions are visible**:
-     - In File Explorer, go to `View` > `Show` > `File name extensions`.
-     - Verify that the file is not saved as `install.conf.txt`.
+
+Install database
+~~~~~~~~~~~~~~~~
+
+1. ** connect to MySQL**:
+   .. code-block:: shell
+
+      $ mysql -h localhost -u root -p 
+
+   - Enter your MySQL root password when prompted.
+   - Run the following command to create the ACCERT database:
+   
+   .. code-block:: shell
+
+      mysql> source accertdb.sql
+   
+   - Verify that the database has been created by running the following command:
+   
+   .. code-block:: shell
+
+      mysql> show databases;
+
+   - You should see `accert_db` in the list of databases. Then exit the MySQL shell by typing:
+
+   .. code-block:: shell
+
+      mysql> \q
 
 
 Testing the Installation
