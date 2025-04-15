@@ -252,7 +252,7 @@ variable "lsa" affects account(s):
 
  
 [Updating] Account [22221], running algorithm: [acc22221], 
-[Updating] with formulation: 
+[Updating] with formulation: None
 [Updating] Total cost of account 22221
 [Updated]  Changed from 466,068,431.20 dollar to 466,068,431.00 dollar
 
@@ -294,7 +294,7 @@ variable "lsa" affects account(s):
 
  
 [Updating] Account [2263], running algorithm: [acc2263], 
-[Updating] with formulation: 
+[Updating] with formulation: None
 [Updating] Total cost of account 2263
 [Updated]  Changed from 193,350,599.40 dollar to 193,350,599.00 dollar
 
@@ -313,7 +313,7 @@ variable "lsa" affects account(s):
 
  
 [Updating] Account [243], running algorithm: [acc243], 
-[Updating] with formulation: 
+[Updating] with formulation: None
 [Updating] Total cost of account 243
 [Updated]  Changed from 6,573,339.47 dollar to 6,579,999.00 dollar
 

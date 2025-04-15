@@ -548,8 +548,8 @@ fusion_l4COA_names = ['22121' '22122' '22123' '22124' '22131' '22132' '22211' '2
 '22213' '22214' '22215' '22221' '22222' '22223' '22224' '22511' '22512' '22513' '22514' 
 '22515' '22521' '22522' '22523' '22524' '22525' '22526' '22527' '22611' '22612' 'new']
 
-unit_names = [squareMeter cubeMeter kW MW W lbs ton kg million 'gpm*feet' '1' m 'm^2' 'm^3' 
-'dollar/m^3' 'dollar/m^2' 'psi' 'psf' 'bar' 'dollar' 'thousand']
+unit_names = [squareMeter cubeMeter kW MW W lbs ton kg million 'gpm*feet' '1' 'm' 'm^2' 'm^3' 
+'dollar/m^3' 'dollar/m^2' 'psi' 'psf' 'bar' 'dollar' 'thousand' 'None']
 
 alg_names = ['sum_multi_accounts' 'sum_multi_weights' 'sum_multi_pumps' 'ptn_account' 
 'unit_weights' 'pump' 'containment' 'MWth_scale' 'unit_volume' 'dev_factor_ref' 'tur_exp_n' 

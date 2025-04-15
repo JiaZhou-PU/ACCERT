@@ -812,3 +812,209 @@ class FusionFunc(Algorithm):
             pwrrej = pthermmw - pgrossmw
         acc26 = (1.0e-6 * uchrs * pwrrej) / 2300.0e0 * cmlsa[lsa - 1]
         return acc26
+    
+    @staticmethod
+    #calelevol: ELECTRICAL EQUIPMENT BUILDING COST
+    def calelevol(tfcbv, pfbldgm3, esbldgm3, pibv):
+        calelevol = tfcbv + pfbldgm3 + esbldgm3 + pibv
+        return calelevol
+
+    @staticmethod
+    #calaintmass: TF INTERCOIL STRUCTURE COST CALCULATION
+    def calaintmass(ai, b0, tf_h_width):
+        calaintmass = 1.4e6 * (ai / 2.2e7) * (b0 / 4.85e0) * (tf_h_width**2 / 50.0e0)
+        return calaintmass
+
+    @staticmethod
+    #calclgsmass: CALCULATION OF TF COIL GRAVITY SUPPORT STRUCTURE
+    def calclgsmass(coilmass, r0, dens, sigal):
+        calclgsmass = coilmass * (r0 / 6.0e0) * 9.1e0 * 9.807e0 * (dens / sigal)
+        return calclgsmass
+    
+    @staticmethod
+    #calfncmass: PF COIL SUPPORT STRUCTURE COST CALCULATION
+    def calfncmass(a, ai, akappa, r0):
+        calfncmass = 2.1e-11 * ai * ai * r0 * akappa * a
+        return calfncmass
+
+    @staticmethod
+    #calechpwr: ECH SYSTEM COST CALCULATION
+    def calechpwr(faccd, faccdfix, plascur, effrfss, pheat):
+        calechpwr = (1.0e-6* (faccd - faccdfix)* plascur / effrfss)+ pheat
+        return calechpwr
+    
+    @staticmethod
+    #caldlscal: VCUUM DUCT COST CALCULATION
+    def caldlscal(l1, ltot, imax, d_0, d_1, d_2, d_3):
+        d = np.array([d_0, d_1, d_2, d_3])
+        caldlscal = l1 * d[imax] ** 1.4e0 + (ltot - l1) * (d[imax] * 1.2e0) ** 1.4e0
+        return caldlscal
+    
+    @staticmethod
+    #calgsmass: TOTAL SUPPORT STRUCTURE COST CALCULATION 
+    def calgsmass(coolmass, fwmass, blmass, shldmass, dvrtmass, tfmass, pfmass, tfhmax, dens, sigal, aintmass, clgsmass):
+        ws1 = coolmass + fwmass + blmass + shldmass + dvrtmass
+        gsm1 = 5.0e0 * 9.807e0 * ws1 * dens / sigal
+        ws2 = ws1 + tfmass + pfmass + aintmass + clgsmass
+        gsm2 = 1.0e-3 * 34.77e0 * (r0 + 1.0e0) * np.sqrt(0.001e0 * ws2) * dens
+        gsm3 = 1.0e-6 * 0.3e0 * (tfhmax + 2.0e0) * ws2 * dens
+        calgsmass = gsm1 + gsm2 + gsm3
+        return calgsmass
+    
+    @staticmethod
+    #calrbvol: REACTOR BUILDING VOLUME CALCULATION
+    def calrbvol(wrbi, rbwt, drbi, hrbi, rbrt, fndt, rbvfac):
+        rbw = 2.0e0 * wrbi + 2.0e0 * rbwt
+        rbl = drbi + 2.0e0 * rbwt
+        rbh = hrbi + rbrt + fndt
+        calrbvol = rbvfac * rbw * rbl * rbh
+        return calrbvol
+    
+    @staticmethod
+    #calrndfuel: FUEL BURNUP RATE CALCUATION
+    def calrndfuel(fusionrate, palpnb, ealphadt, echarge, vol):
+        fusionrate = fusionrate + (1.0e6*palpnb)/ (1.0e3 * ealphadt * echarge* vol)
+        fusrat= fusionrate*vol
+        calrndfuel = fusrat
+        return calrndfuel
+    
+    @staticmethod
+    #calvolrci: INTERNAL VOLUME OF REACTOR BUILDING CALCULATION
+    def calvolrci(rbvfac, wrbi, drbi, hrbi):
+        calvolrci = rbvfac * 2.0e0 * wrbi * drbi * hrbi
+        return calvolrci
+    
+    @staticmethod
+    #calrmbvol: VOLUME OF MAINTENANCE AND ASSEMBLY BUILDING CALCULATION 
+    def calrmbvol(shro, shri, trcl, hcwt, hccl, wgt2, shmf, shm, n_tf, shh, stcl, mbvfac, fndt):
+        tcw = shro - shri + 4.0e0 * trcl
+        tcl = 5.0e0 * tcw + 2.0e0 * hcwt
+        dcw = 2.0e0 * tcw + 1.0e0
+        hcw = shro - shri + 3.0e0 * hccl + 2.0e0
+        hcl = 3.0e0 * (shro - shri) + 4.0e0 * hccl + tcw
+        rmbw = hcw + dcw + 3.0e0 * hcwt
+        rmbl = hcl + 2.0e0 * hcwt
+        if wgt2 > 1.0e0:
+            wgts = wgt2
+        else:
+            wgts = shmf * shm / n_tf
+        cran = 9.41e-6 * wgts + 5.1e0
+        rmbh = (10.0e0 + shh+ trcl + cran+ stcl+ fndt)
+        tch = shh + stcl + fndt
+        calrmbvol = mbvfac * rmbw * rmbl * rmbh + tcw * tcl * tch
+        return calrmbvol
+    
+    @staticmethod
+    #calwsvol: VOLUME OF WARM SHOP BUILDING CALCULATION
+    def calwsvol(shro, shri, trcl, hcwt, hccl, wgt2, shmf, shm, n_tf, shh, stcl, fndt, wsvfac):
+        tcw = shro - shri + 4.0e0 * trcl
+        hcw = shro - shri + 3.0e0 * hccl + 2.0e0
+        hcl = 3.0e0 * (shro - shri) + 4.0e0 * hccl + tcw
+        dcw = 2.0e0 * tcw + 1.0e0
+        rmbw = hcw + dcw + 3.0e0 * hcwt
+        rmbl = hcl + 2.0e0 * hcwt
+        rmbw = hcw + dcw + 3.0e0 * hcwt
+        wsa = (rmbw + 7e0)*20+(rmbl*7)
+        if wgt2 > 1.0e0:
+            wgts = wgt2
+        else:
+            wgts = shmf * shm / n_tf
+        cran = 9.41e-6 * wgts + 5.1e0
+        rmbh = (10.0e0 + shh+ trcl + cran+ stcl+ fndt)
+        calwsvol = wsvfac*wsa*rmbh
+        return calwsvol
+    
+    @staticmethod
+    #calawpoh: PFCOIL CONDUCTOR COST CALCULATION
+    def calawpoh(oh_steel_frac, areaoh):
+        areaspf = oh_steel_frac * areaoh
+        calawpoh = areaoh - areaspf
+        return calawpoh
+    
+    @staticmethod
+    #caltargtm: MASS OF FUEL CALCULATION
+    def caltargtm(gain, edrive, fburn):
+        caltargtm = (gain* edrive * 3.0e0 * 1.67e-27 * 1.0e3/ (1.602e-19 * 17.6e6 * fburn))
+        return caltargtm
+    
+    @staticmethod
+    #calwtgpd: MASS OF FUEL USED PER DAY
+    def calwtgpd(targtm, reprat, rndfuel, afuel, umass, ife):
+        ife = int(ife)
+        if ife ==1:
+            calwtgpd = targtm*reprat*86400
+        else:
+            calwtgpd = 2.0e0* rndfuel* afuel * umass* 1000.0e0* 86400.0e0
+        return calwtgpd
+    
+    @staticmethod
+    #fwbllife: FIRST WALL AND BLANKET OPERATIONAL LIFE
+    def fwbllife(bktlife):
+        fwbllife = bktlife
+        return fwbllife
+    
+    @staticmethod
+    #feffwbl: FIRST WALL AND BLANKET COMPOUND INTEREST FACTOR
+    def feffwbl(discount_rate, fwbllife):
+        feffwbl = (1+discount_rate)**fwbllife
+        return feffwbl
+    
+    @staticmethod
+    #crffwbl: FIRST WALL AND BLANKET CAPITAL RECOVERY FACTOR
+    def crffwbl(feffwbl, discount_rate):
+        crffwbl = (feffwbl * discount_rate) / (feffwbl - 1.0e0)
+        return crffwbl
+    
+    @staticmethod
+    #fefdiv: DIVERTOR COMPOUND INTEREST FACTOR
+    def fefdiv(divlife, discount_rate, ife):
+        ife = int(ife)
+        if ife == 1:
+            fefdiv = 0
+        else:
+            fefdiv = (1.0e0 + discount_rate) ** divlife
+        return fefdiv
+    
+    @staticmethod
+    #crfdiv: DIVERTOR CAPITAL RECOVERY FACTOR
+    def crfdiv(fefdiv, discount_rate, ife):
+        ife = int(ife)
+        if ife == 1:
+            crfdiv = 0
+        else:
+            crfdiv = (fefdiv * discount_rate) / (fefdiv - 1.0e0)
+        return crfdiv
+    
+    @staticmethod
+    #fefcp: CENTREPOST COMPOUND INTEREST FACTOR
+    def fefcp(itart, ife, discount_rate, cplife):
+        itart = int(itart)
+        ife = int(ife)
+        if (itart == 1) and (ife != 1):
+            fefcp = (1.0e0 + discount_rate) ** cplife
+        else:
+            fefcp = 0
+        return fefcp
+    
+    @staticmethod
+    #crfcp: CENTREPOST CAPITAL RECOVERY FACTOR 
+    def crfcp(itart, ife, fefcp, discount_rate):
+        itart = int(itart)
+        ife = int(ife)
+        if (itart == 1) and (ife != 1):
+            crfcp = (fefcp * discount_rate) / (fefcp - 1.0e0)
+        else: 
+            crfcp = 0
+        return crfcp
+    
+    @staticmethod
+    #fefcdr: CURRENT DRIVE SYSTEM COMPOUND INTEREST FACTOR
+    def fefcdr(discount_rate, cdrlife):
+        fefcdr = (1.0e0 + discount_rate) ** cdrlife
+        return fefcdr
+    
+    @staticmethod
+    #crfcdr: CURRENT DRIVE CAPITAL RECOVERY FACTOR 
+    def crfcdr(fefcdr, discount_rate):
+        crfcdr = (fefcdr * discount_rate) / (fefcdr - 1.0e0)
+        return crfcdr

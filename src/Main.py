@@ -514,14 +514,17 @@ class Accert:
         # # # create a value list for debugging
         # # var_value_lst = []
         variables = {}
-        for var_ind, var_name in enumerate(var_name_lst):
-            # var_value_lst.append(get_var_value_by_name(c, var_name))
-            variables['v_{}'.format(var_ind+1)] = self.get_var_value_by_name(c, var_name)
-        print('[Updating] Sup Variable {}, running algorithm: [{}], \n[Updating] with formulation: {}'.format(sup_var_name, alg_name, alg_form))
         if self.cel_tabl:
+            for var_ind, var_name in enumerate(var_name_lst):
+                # var_value_lst.append(get_var_value_by_name(c, var_name))
+                variables['v_{}'.format(var_ind+1)] = self.get_var_value_by_name(c, var_name)
+            print('[Updating] Sup Variable {}, running algorithm: [{}], \n[Updating] with formulation: {}'.format(sup_var_name, alg_name, alg_form))
             alg_value = self.run_pre_alg(alg, **variables)
         else:
-            alg_value = self.update_account_value(alg, alg_name, variables)        
+            for var_ind, var_name in enumerate(var_name_lst):
+                variables[var_name] = self.get_var_value_by_name(c, var_name)
+            print('[Updating] Sup Variable {}, running algorithm: [{}], \n[Updating] with formulation: {}'.format(sup_var_name, alg_name, alg_form))
+            alg_value= self.update_account_value(alg, alg_name, variables)
         self.update_input_variable(c,sup_var_name,alg_value,sup_var_unit,quite = True)
         if alg_unit == '1':
             alg_unit=''
@@ -990,7 +993,7 @@ class Accert:
 
     def update_new_accounts(self, c):
         """
-        Updates the affected accounts based on the variables. This funstion is called
+        Updates the affected accounts based on the variables. This function is called
         when there is no cost element table.
 
         Parameters
@@ -1441,6 +1444,10 @@ class Accert:
         sup_val_lst = self.extract_super_val(c, var_id)
         if sup_val_lst:
             sup_val_lst = sup_val_lst.split(',')
+            # also remove the space after the comma
+            sup_val_lst = [x.strip() for x in sup_val_lst]
+        if sup_val_lst:
+            print('[Updating] Other variable(s) should be updated based on {} are {} \n'.format(var_id, sup_val_lst))
         while sup_val_lst:
             sup_val = sup_val_lst.pop(0)
             if sup_val:
@@ -1448,7 +1455,7 @@ class Accert:
                 new_sup_val = self.extract_super_val(c, sup_val)
                 if new_sup_val:
                     sup_val_lst.extend(new_sup_val.split(','))
-
+                    
     def process_COA(self, c, accert):
         """
         Change the total cost of the account table by user inputs.
