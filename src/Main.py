@@ -95,6 +95,14 @@ class Accert:
             self.alg_tabl = 'fusion_alg'
             self.esc_tabl = 'escalation'
             self.fac_tabl = 'facility'
+        elif "stellarator" in str(xml2obj.ref_model.value).lower():
+            self.ref_model = 'fusion'
+            self.acc_tabl = 'ste_acc'
+            self.cel_tabl = None
+            self.var_tabl = 'ste_var'
+            self.alg_tabl = 'fusion_alg'
+            self.esc_tabl = 'escalation'
+            self.fac_tabl = 'facility'
         elif "user_defined" in str(xml2obj.ref_model.value).lower():
             self.ref_model = 'user_defined'
             self.acc_tabl = 'user_defined_account'
@@ -427,11 +435,19 @@ class Accert:
         # NOTE: org_var_info is a tuple
         org_var_value = float(org_var_info[0])
         org_var_unit = str(org_var_info[1])
+        # remove the quotes from the string
+        u_i_var_unit = str(u_i_var_unit).replace("'","").replace('"','')
+
         unit_convert = self.check_unit_conversion(org_var_unit,u_i_var_unit)
         if unit_convert:
             u_i_var_value = self.convert_unit(u_i_var_value,u_i_var_unit,org_var_unit)
             u_i_var_unit = org_var_unit
         # # DEBUG print
+        # do not print unit if unit is '1' or 'N/A' or 'none' or 'None'
+        if u_i_var_unit == '1' or u_i_var_unit == 'N/A' or u_i_var_unit == 'none' or u_i_var_unit == 'None':
+            u_i_var_unit = ''
+        if org_var_unit == '1' or org_var_unit == 'N/A' or org_var_unit == 'none' or org_var_unit == 'None':
+            org_var_unit = ''
         self.update_variable_info_on_name(c,var_id,u_i_var_value,u_i_var_unit)
         if not quite:
             print('[Updated]  Changed from {} {} to {} {}\n'.format(org_var_value,org_var_unit, u_i_var_value, u_i_var_unit))
@@ -594,6 +610,9 @@ class Accert:
         """
         if org_unit == new_unit:
             return False
+        elif org_unit == "N/A" or org_unit == "none" or org_unit == "None":
+            print('[Note] Original unit is not available, no conversion needed')
+            return False
         else:
             return True
 
@@ -720,7 +739,12 @@ class Accert:
         if unit_convert:
             u_i_tc_value = self.convert_unit(u_i_tc_value,u_i_tc_unit,org_tc_unit)
             u_i_tc_unit = org_tc_unit
-        self.update_total_cost_on_name(c,tc_id,u_i_tc_value)   
+        self.update_total_cost_on_name(c,tc_id,u_i_tc_value)
+        # do not print unit if unit is '1' or 'N/A' or 'none' or 'None'
+        if u_i_tc_unit == '1' or u_i_tc_unit == 'N/A' or u_i_tc_unit == 'none' or u_i_tc_unit == 'None':
+           u_i_tc_unit = ''
+        if org_tc_unit == '1' or org_tc_unit == 'N/A' or org_tc_unit == 'none' or org_tc_unit == 'None':
+           org_tc_unit = ''  
         print('[Updated]  Changed from {:,.2f} {} to {:,.2f} {}\n'.format( org_tc_value,org_tc_unit, int(u_i_tc_value), org_tc_unit))
         return None
 

@@ -192,7 +192,7 @@ class FusionFunc(Algorithm):
     #acc22124: BLANKET VANADIUM COST
     def acc22124(whtblvd, ucblvd, ife, lsa):
         lsa=int(lsa)
-        cmlsa = [0.5000e0, 0.7500e0, 0.8750e0, 1.0000e0]
+        cmlsa = [0.6700e0, 0.8350e0, 0.9175e0, 1.0000e0]
         if ife == 1:
             acc22124 = 1.0e-6 * whtblvd * ucblvd
         else:
@@ -212,7 +212,6 @@ class FusionFunc(Algorithm):
                         + ucconc *   (shmatm+ shmatm + shmatm))
         else:
             acc22131 = 1.0e-6 * whtshld * ucshld * cmlsa[lsa - 1]
-        acc22131 = acc22131
         return acc22131
 
     @staticmethod
@@ -224,7 +223,6 @@ class FusionFunc(Algorithm):
             acc22132 = 1.0e-6 * wpenshld * ucpens * cmlsa[lsa - 1]
         else:
             acc22132 = 1.0e-6 * wpenshld * ucpens * cmlsa[lsa - 1]
-        acc22132 = acc22132
         return acc22132
 
     @staticmethod
@@ -233,7 +231,6 @@ class FusionFunc(Algorithm):
         lsa=int(lsa)
         cmlsa = [0.6700e0, 0.8350e0, 0.9175e0, 1.0000e0]
         acc2214 = 1.0e-6 * gsmass * ucgss * cmlsa[lsa - 1]
-        acc2214 = acc2214
         return acc2214
 
     @staticmethod
@@ -252,27 +249,35 @@ class FusionFunc(Algorithm):
         else:
             acc2215 = 0.0e0
             divcst = 0.0e0
+        #NOTE: divcst is not used in the original code but is included in the function signature
         return acc2215
 
     @staticmethod
     #acc22211: TF COIL CONDUCTOR COST
-    def acc22211(whtcp, uccpcl1, itart, ifueltyp, cpstcst, ucsc_4, whtconsc, 
-                tfleng, n_tf_turn, uccu, whtconcu, cconshtf, cconfix, n_tf, lsa, i_tf_sup):
-        lsa=int(lsa)    
+    def acc22211(whtcp, uccpcl1, itart, ifueltyp, cpstcst, whtconsc, 
+                tfleng, n_tf_turn, uccu, whtconcu, cconshtf, cconfix, n_tf, lsa, i_tf_sup,
+                ucsc_0, ucsc_1, ucsc_2, ucsc_3, ucsc_4, ucsc_5, ucsc_6, ucsc_7, ucsc_8,
+                fkind, i_tf_sc_mat):
+        lsa=int(lsa)
+        i_tf_sc_mat = int(i_tf_sc_mat)
+        i_tf_sup = int(i_tf_sup)
+        ifueltyp = int(ifueltyp)
+        itart = int(itart)
         cmlsa = [0.6900e0, 0.8450e0, 0.9225e0, 1.0000e0]
+        ucsc = np.array([ucsc_0, ucsc_1, ucsc_2, ucsc_3, ucsc_4, ucsc_5, ucsc_6, ucsc_7, ucsc_8])
         if i_tf_sup == 1:  
-            costtfsc = ucsc_4 * whtconsc / (tfleng * n_tf_turn)
-            costtfcu = uccu * whtconcu / (tfleng * n_tf_turn)
-            costwire = costtfsc + costtfcu
-            ctfconpm = costwire + cconshtf + cconfix
-            acc22211 = 1.0e-6 * ctfconpm * n_tf * tfleng * n_tf_turn
-            acc22211 = acc22211 * cmlsa[lsa - 1]
+            costtfsc = ucsc[i_tf_sc_mat - 1]*whtconsc/(tfleng*n_tf_turn)
+            costtfcu = uccu*whtconcu/(tfleng*n_tf_turn)
+            costwire = costtfsc+costtfcu
+            ctfconpm = costwire+cconshtf+cconfix
+            acc22211 = 1.0e-6*ctfconpm*n_tf*tfleng*n_tf_turn
+            acc22211 = fkind*acc22211*cmlsa[lsa - 1]
         else:  
-            acc22211 = 1.0e-6 * whtcp * uccpcl1 * cmlsa[lsa - 1]
-            acc22211 = acc22211
+            acc22211 = 1.0e-6*whtcp*uccpcl1*cmlsa[lsa - 1]
+            acc22211 = fkind*acc22211
             if (itart == 1) and (ifueltyp == 1):
                 acc22211 = cpstcst
-                accc22211 = 0.0e0
+                acc22211 = 0.0e0
             elif (itart == 1) and (ifueltyp == 2):
                 acc22211 = cpstcst
         return acc22211
@@ -287,7 +292,6 @@ class FusionFunc(Algorithm):
             acc22212 = acc22212 * cmlsa[lsa - 1]
         else:
             acc22212 = 1.0e-6 * whttflgs * uccpclb * cmlsa[lsa - 1]
-            acc22212 = acc22212
         return acc22212
 
     @staticmethod
@@ -435,7 +439,8 @@ class FusionFunc(Algorithm):
     @staticmethod
     #acc2231: ECH SYSTEM COST
     def acc2231(ucech, echpwr, exprf, ifedrv, dcdrv1, dcdrv2, cdriv1, 
-                mcdriv, edrive, etadrv, dcdrv0, cdriv0 ,cdriv3, fcdfuel):
+                mcdriv, edrive, etadrv, dcdrv0, cdriv0 ,cdriv3, fcdfuel, 
+                ife, cdriv2,ifueltyp):
         exprf = 1.0e0
         if ife == 1 :
             if ifedrv == 2:
@@ -463,7 +468,7 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #acc2232: LOWER HYBRID SYSTEM COST
-    def acc2232(iefrf, uclh, plhybd, exprf, ucich, fcdfuel):
+    def acc2232(iefrf, uclh, plhybd, exprf, ucich, fcdfuel, ifueltyp, ife):
         exprf = 1.0e0
         if ife != 1:
             if iefrf != 2:
@@ -480,7 +485,7 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #acc2233: NEUTRAL BEAM SYSTEM COST 
-    def acc2233(ucnbi, exprf, fcdfuel):
+    def acc2233(ucnbi, exprf, fcdfuel, ifueltyp, pnbitot, ife, ifedrv):
         if ife == 1:
                 acc2233 = (1.0e-6 * ucnbi * (1.0e6 * pnbitot) ** exprf)
                 if ifueltyp == 1:
@@ -498,7 +503,6 @@ class FusionFunc(Algorithm):
             acc2241 = 1.0e-6 * vpumpn * uccpmp
         else:
             acc2241 = 1.0e-6 * vpumpn * uctpmp
-        acc2241 = acc2241
         return acc2241
 
     @staticmethod
@@ -512,90 +516,78 @@ class FusionFunc(Algorithm):
     #acc2243: VACUUM DUCT COST
     def acc2243(nvduct, dlscal, ucduct):
         acc2243 = 1.0e-6 * nvduct * dlscal * ucduct
-        acc2243 = acc2243
         return acc2243
 
     @staticmethod
     #acc2244: VALVES COST
     def acc2244(nvduct, vcdimax, ucvalv):
         acc2244 = 1.0e-6 * 2.0e0 * nvduct * ((vcdimax * 1.2e0) ** 1.4e0) * ucvalv
-        acc2244 = acc2244
         return acc2244
 
     @staticmethod
     #acc2245: DUCT SHEILDING COST 
     def acc2245(nvduct, vacdshm, ucvdsh):
         acc2245 = 1.0e-6 * nvduct * vacdshm * ucvdsh
-        acc2245 = acc2245
         return acc2245
 
     @staticmethod
     #acc2246: INSTRUMENTATION COST
     def acc2246(ucviac):
         acc2246 = 1.0e-6 * ucviac
-        acc2246 = acc2246
         return acc2246
 
     @staticmethod
     #acc22511: TF COIL POWER SUPPLIED COST
     def acc22511(uctfps, tfckw, tfcmw, expel):
         acc22511 = 1.0e-6 * uctfps * (tfckw * 1.0e3 + tfcmw * 1.0e6) ** expel
-        acc22511 = acc22511
         return acc22511
 
     @staticmethod
     #acc22512: TF COIL BREAKERS COST
-    def acc22512(uctfbr, n_tf, cpttf, vtfskv, expel, uctfsw):
+    def acc22512(uctfbr, n_tf, cpttf, vtfskv, expel, uctfsw, i_tf_sup):
         if i_tf_sup == 1:
             acc22512 = 1.0e-6 * (uctfbr * n_tf * (cpttf * vtfskv * 1.0e3) ** expel + uctfsw * cpttf)
         else:
             acc22512 = 0.0e0
-        acc22512 = acc22512
         return acc22512
 
     @staticmethod
     #acc22513: TF COIL DUMP RESISTORS COST 
     def acc22513(uctfdr, estotftgj, uctfgr, n_tf):
         acc22513 = 1.0e-6 * (1.0e9 * uctfdr * estotftgj + uctfgr * 0.5e0 * n_tf)
-        acc22513 = acc22513
         return acc22513
 
     @staticmethod
     #acc22514: TF COIL INSTRUMENTATION AND CONTROL
     def acc22514(uctfic, n_tf):
         acc22514 = 1.0e-6 * uctfic * (30.0e0 * n_tf)
-        acc22514 = acc22514 
         return acc22514
 
     @staticmethod
     #acc22515: TF COIL BUSSING COST
-    def acc22515(uctfbus, tfbusmas, ucbus, cpttf, tfbusl):
+    def acc22515(uctfbus, tfbusmas, ucbus, cpttf, tfbusl, i_tf_sup):
         if i_tf_sup == 1:
             acc22515 = 1.0e-6 * ucbus * cpttf * tfbusl
         else:
             acc22515 = 1.0e-6 * uctfbus * tfbusmas
-        acc22515 = acc22515
         return acc22515
 
     @staticmethod
     #acc22521: PF COIL POWER SUPPLIES COST
     def acc22521(ucpfps, peakmva):
         acc22521 = 1.0e-6 * ucpfps * peakmva
-        acc22521 = acc22521
         return acc22521
 
     @staticmethod
     #acc22522: PF COIL INSTRUMENTATION AND CONTROL 
     def acc22522(ucpfic, pfckts):
         acc22522 = 1.0e-6 * ucpfic * pfckts * 30.0e0
-        acc22522 = acc22522
         return acc22522
 
     @staticmethod
     #acc22523: PF COIL BUSSING COST
     def acc22523(ucpfb, spfbusl, acptmax):
         acc22523 = 1.0e-6 * ucpfb * spfbusl * acptmax
-        acc22523 = acc22523
         return acc22523
 
     @staticmethod
@@ -605,28 +597,24 @@ class FusionFunc(Algorithm):
             acc22524 = 0.0e0
         else:
             acc22524 = 1.0e-6 * ucpfbs * pfckts * (srcktpm / pfckts) ** 0.7e0
-        acc22524 = acc22524
         return acc22524
 
     @staticmethod
     #acc22525: PF COIL BREAKERS COST   
     def acc22525(ucpfbk, pfckts, acptmax, vpfskv):
         acc22525 = 1.0e-6 * ucpfbk * pfckts * ((acptmax * vpfskv) ** 0.7e0)
-        acc22525 = acc22525
         return acc22525
 
     @staticmethod
     #acc22526: PF COIL DUMP RESISTORS COST
     def acc22526(ucpfdr1, ensxpfm):
         acc22526 = 1.0e-6 * ucpfdr1 * ensxpfm
-        acc22526 = acc22526
         return acc22526
 
     @staticmethod
     #acc22527: PF COIL AC BREAKER COST
     def acc22527(ucpfcb, pfckts):
         acc22527 = 1.0e-6 * ucpfcb * pfckts
-        acc22527 = acc22527
         return acc22527
 
     @staticmethod
@@ -656,12 +644,12 @@ class FusionFunc(Algorithm):
         if istore < 3:
             acc2253 = acc2253 * pnetelmw / 1200.0e0
             acc2253 = acc2253 * 1.36e0
-        acc2253 = acc2253
         return acc2253
 
     @staticmethod
     #accpp: PUMPS AND PIPING SYSTEM COST 
     def acc22612(uchts, coolwh, pfwdiv, exphts, pnucblkt, pnucshld, lsa):
+        cmlsa = [0.4000e0, 0.7000e0, 0.8500e0, 1.0000e0]
         accpp = 1.0e-6 * uchts[coolwh - 1] * ((1.0e6 * pfwdiv) ** exphts +
                                             (1.0e6 * pnucblkt) ** exphts + (1.0e6 * pnucshld) ** exphts)
         accpp = accpp * cmlsa[lsa - 1]
@@ -699,7 +687,6 @@ class FusionFunc(Algorithm):
     #acc2271: FUELING SYSTEM COST
     def acc2271(ucf1):
         acc2271 = 1.0e-6 * ucf1
-        acc2271 = acc2271
         return acc2271
 
     @staticmethod
@@ -711,38 +698,33 @@ class FusionFunc(Algorithm):
         else:
             wtgpd = 2.0e0 * rndfuel * afuel * umass * 1000.0e0 * 86400.0e0
         acc2272 = 1.0e-6 * ucfpr * (0.5e0 + 0.5e0 * (wtgpd / 60.0e0) ** 0.67e0)
-        acc2272 = acc2272
         return acc2272
 
     @staticmethod
     #acc2273: ATMOSPHERIC RECOVERY SYSTEMS COST
-    def acc2273(ftrit, ucdtc, volrci, wsvol):
+    def acc2273(ftrit, ucdtc, volrci, wsvol, cfrht):
         if ftrit > 1.0e-3:
             acc2273 = (1.0e-6 * ucdtc * ((cfrht / 1.0e4) ** 0.6e0 * (volrci + wsvol)))
         else:
             acc2273 = 0.0e0
-        acc2273 = acc2273   
         return acc2273
 
     @staticmethod
     #acc2274: NUCLEAR BUILDING VENTILATION COST
     def acc2274(ucnbv, volrci, wsvol):
         acc2274 = 1.0e-6 * ucnbv * (volrci + wsvol) ** 0.8e0
-        acc2274 = acc2274
         return acc2274
 
     @staticmethod
     #acc228: INSTRUMENTATION AND CONTROL COST
     def acc228(uciac):
         acc228 = 1.0e-6 * uciac
-        acc228 = acc228
         return acc228
 
     @staticmethod
     #acc229: MAINTENANCE EQUIPMENT COST
     def acc229(ucme):
         acc229 = 1.0e-6 * ucme
-        acc229 = acc229
         return acc229
 
     @staticmethod
@@ -774,7 +756,13 @@ class FusionFunc(Algorithm):
     def acc243(uclv, tlvpmw, lsa):
         cmlsa = [0.5700e0, 0.7850e0, 0.8925e0, 1.0000e0]
         lsa=int(lsa)
-        acc243 = 1.0e-6 * uclv * tlvpmw * 1.0e3 / (0.8e0 * cmlsa[lsa - 1])
+        acc243 = (1.0e-6
+            * uclv
+            * tlvpmw
+            * 1.0e3
+            / 0.8e0
+            * cmlsa[lsa - 1]
+        )
         return acc243
 
     @staticmethod
@@ -852,7 +840,7 @@ class FusionFunc(Algorithm):
     
     @staticmethod
     #calgsmass: TOTAL SUPPORT STRUCTURE COST CALCULATION 
-    def calgsmass(coolmass, fwmass, blmass, shldmass, dvrtmass, tfmass, pfmass, tfhmax, dens, sigal, aintmass, clgsmass):
+    def calgsmass(coolmass, fwmass, blmass, shldmass, dvrtmass, tfmass, pfmass, tfhmax, dens, sigal, aintmass, clgsmass,r0):
         ws1 = coolmass + fwmass + blmass + shldmass + dvrtmass
         gsm1 = 5.0e0 * 9.807e0 * ws1 * dens / sigal
         ws2 = ws1 + tfmass + pfmass + aintmass + clgsmass
@@ -875,8 +863,7 @@ class FusionFunc(Algorithm):
     def calrndfuel(fusionrate, palpnb, ealphadt, echarge, vol):
         fusionrate = fusionrate + (1.0e6*palpnb)/ (1.0e3 * ealphadt * echarge* vol)
         fusrat= fusionrate*vol
-        calrndfuel = fusrat
-        return calrndfuel
+        return fusrat
     
     @staticmethod
     #calvolrci: INTERNAL VOLUME OF REACTOR BUILDING CALCULATION
