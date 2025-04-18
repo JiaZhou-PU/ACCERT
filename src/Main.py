@@ -597,6 +597,60 @@ class Accert:
         tc_info = results[0]    
         return tc_info
 
+    def cal_LCOE(self, c, ut, accert):
+        """
+        Calculates the Levelized Cost of Energy (LCOE) based on the input data.
+
+        Parameters
+        ----------
+        c : MySQLCursor
+            MySQLCursor class instantiates objects that can execute MySQL statements.
+        ut : Utility_methods
+            Utility_methods class instantiates objects that can perform utility methods.
+        accert : Accert
+            Accert class instantiates objects that can perform ACCERT methods.
+
+        Returns
+        -------
+        None
+        """
+        # var_need = {
+        # 'c2', 'c221', 'c222', 'c223', 'cowner', 'cfind_0', 'cfind_1', 'cfind_2', 'cfind_3',
+        # 'fcontng', 'fcap0', 'fcap0cp', 'fcr0', 'ife', 'ifueltyp', 'lsa', 'cdcost', 'fcdfuel',
+        # 'cpstcst', 'crfcdr', 'crfcp', 'cplife', 'tlife', 'decomf', 'discount_rate', 'dintrt', 'dtlife',
+        # 'divcst', 'crfdiv', 'divlife', 'ucfuel', 'pnetelmw', 'fhe3', 'wtgpd', 'uche3', 'n_day_year',
+        # 'cfactr', 'reprat', 'uctarg', 'crffwbl', 'c2212', 'fwallcst', 'fwbllife',
+        # 'ucoam_0', 'ucoam_1', 'ucoam_2', 'ucoam_3', 'ucwst_0', 'ucwst_1', 'ucwst_2', 'ucwst_3',
+        # 'tburn', 'tcycle'}
+        # which will be quoted in from the database:
+        # 'c2', 'c221', 'c222', 'c223', 'c2212' will be quoted from the account
+        # others will be quoted from the variable database
+        if self.ref_model == 'fusion' or self.ref_model == 'stellarator':
+            # inport the LCOE module
+            module = importlib.import_module('Algorithm.LCOE')
+            # get the class
+            # LCOE = getattr(module, 'LCOE')
+            # # init the class
+
+            LCOE_module = module.LCOE(c, ut, accert)
+            LCOE_module.setup_tables(Accert)
+            LCOE_module.quote_variable_values(c,Accert)
+            LCOE_module.coelc()
+            
+            # print('[DEBUG] LCOE calculation begins')
+            # c2 = self.extract_total_cost_on_name(c, '2')[2]
+            # print('[DEBUG] c2:', c2)  
+            # c221 = self.extract_total_cost_on_name(c, '221')
+            # c222 = self.extract_total_cost_on_name(c, '222')
+            # c223 = self.extract_total_cost_on_name(c, '223')
+            # c2212 = self.extract_total_cost_on_name(c, '2212')
+            # print('[DEBUG] c221:', c221, 'c222:', c222, 'c223:', c223, 'c2212:', c2212)
+            # cowner = self.extract_variable_info_on_name(c, 'cowner')[0]
+            # print('[DEBUG] cowner:', cowner)
+
+        else:
+            pass
+
     def check_unit_conversion(self, org_unit, new_unit):
         """
         Checks if unit conversion is needed.
@@ -1384,6 +1438,7 @@ class Accert:
         self.process_COA(c, accert)
         self.finalize_process(c, ut, accert)
         self.generate_results(c, ut, accert)
+        self.cal_LCOE(c, ut, accert)
         conn.close()
         sys.stdout.close()
         sys.stdout = stdoutOrigin
