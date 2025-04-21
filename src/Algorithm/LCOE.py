@@ -160,5 +160,5 @@ class LCOE(Algorithm):
         # Create a DataFrame from the algorithm table
         df = pd.DataFrame(self.coetabl, columns=['Variable', 'Description', 'Value'])
         # Save to Excel
-        df.to_excel('LCOE_results.xlsx', index=False)
+        df.to_excel('{}_LCOE_results.xlsx'.format(self.ref_model), index=False)
         print("Successfully created excel file {}_LCOE_results.xlsx".format(self.ref_model))
