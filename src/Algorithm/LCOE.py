@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from .Algorithm import Algorithm
 
 class LCOE(Algorithm):
@@ -10,11 +11,13 @@ class LCOE(Algorithm):
         self.c = c
         self.ut = ut
         self.accert = accert
+        self.ref_model = None
         self.acc_tabl = None
         self.var_tabl = None
         self.alg_tabl = None
 
     def setup_tables(self, Accert):
+        self.ref_model = Accert.ref_model
         self.acc_tabl = Accert.acc_tabl
         self.var_tabl = Accert.var_tabl
         self.alg_tabl = Accert.alg_tabl
@@ -46,38 +49,31 @@ class LCOE(Algorithm):
         ife = int(self.ife)
         ifueltyp = int(self.ifueltyp)
         cfind = [self.cfind_0, self.cfind_1, self.cfind_2, self.cfind_3][lsa - 1]
-        print('pnet:', pnet)
-        print('lsa:', lsa)
-        print('ife:', ife)
-        print('ifueltyp:', ifueltyp)
-        print('cfind:', cfind)
         kwhpy = 1e3 * pnet * 24 * self.n_day_year * self.cfactr
         if ife != 1:
             kwhpy *= self.tburn / self.tcycle
-
         # Capital cost
+        rctcore = self.c221 + self.c222 + self.c223
         cindrt = cfind * self.c2*(1.0e0 + self.cowner)
         ccont = self.fcontng*( self.c2+cindrt)
         concost = self.c2+ccont+cindrt
         moneyint = concost * (self.fcap0 - 1)
         capcost = concost + moneyint
-        print('cindrt:', cindrt)
-        print('ccont:', ccont)
-        print('concost:', concost)
-        print('moneyint:', moneyint)
-        print('capcost:', capcost)
 
 
         anncap = capcost * self.fcr0
-        coecap = 1e9 * anncap / kwhpy
+        coecap = 1e9 * anncap / kwhpy/ 1e6
 
         # First wall/blanket
-        blk = self.c2212
+        if ifueltyp == 1 or ifueltyp == 2:
+            blk = self.c2212
+        else:
+            blk = 0
         crffwbl = ((1 + self.discount_rate)**self.fwbllife) / (((1 + self.discount_rate)**self.fwbllife) - 1) * self.discount_rate
         annfwbl = (self.fwallcst + blk) * (1 + cfind) * self.fcap0cp * crffwbl
         if ifueltyp == 2:
             annfwbl *= 1 - self.fwbllife / self.tlife
-        coefwbl = 1e9 * annfwbl / kwhpy
+        coefwbl = 1e9 * annfwbl / kwhpy / 1e6
 
         # Divertor
         if ife == 1:
@@ -131,7 +127,7 @@ class LCOE(Algorithm):
             self.decomf * concost * self.fcr0 /
             (1 + self.discount_rate - self.dintrt)**(self.tlife - self.dtlife)
         )
-        coedecom = 1e9 * anndecom / kwhpy
+        coedecom = 1e9 * anndecom / kwhpy / 1e6
 
         # Aggregate
         coefuelt = coefwbl + coediv + coecdr + coecp + coefuel + coewst
@@ -142,7 +138,27 @@ class LCOE(Algorithm):
         self.coefuelt = coefuelt
         self.coeoam = coeoam
         self.coe = coe
-        print("kwhpy:", kwhpy)
-        print(f"coecap: {coecap}, coecdr: {coecdr}, coecp: {coecp}, coediv: {coediv}, coefuel: {coefuel}, coewst: {coewst}, coedecom: {coedecom}, coe: {coe}")
-        
+        self.coetabl = [
+            ['coecap', 'Cost of electricity due to plant capital cost ($/MWh)',coecap],
+            ['coecdr', 'Cost of electricity due to current drive system replacements ($/MWh)',coecdr],
+            ['coecp', 'Cost of electricity due to centrepost replacements ($/MWh)',coecp],
+            ['coediv', 'Cost of electricity due to divertor renewal ($/MWh)',coediv],
+            ['coefuel', 'Cost of electricity due to reactor fuel ($/MWh)',coefuel],
+            ['coefuelt', 'Total cost of electricity due to "fuel-like" components ($/MWh)',coefuelt],
+            ['coeoam', 'Cost of electricity due to operation and maintenance ($/MWh)',coeoam],
+            ['coewst', 'Cost of electricity due to waste disposal ($/MWh)',coewst],
+            ['coedecom', 'Cost of electricity due to decommissioning ($/MWh)',coedecom],
+            ['coe', 'Total cost of electricity ($/MWh)',coe]
+        ]
 
+    def generate_excel(self):
+        """Generate an Excel file with the results."""
+        # Assuming self.alg_tabl is a DataFrame or similar structure
+        # You can use pandas to write to Excel
+        import pandas as pd
+
+        # Create a DataFrame from the algorithm table
+        df = pd.DataFrame(self.coetabl, columns=['Variable', 'Description', 'Value'])
+        # Save to Excel
+        df.to_excel('LCOE_results.xlsx', index=False)
+        print("Successfully created excel file {}_LCOE_results.xlsx".format(self.ref_model))

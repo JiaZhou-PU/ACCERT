@@ -96,7 +96,7 @@ class Accert:
             self.esc_tabl = 'escalation'
             self.fac_tabl = 'facility'
         elif "stellarator" in str(xml2obj.ref_model.value).lower():
-            self.ref_model = 'fusion'
+            self.ref_model = 'stellarator'
             self.acc_tabl = 'ste_acc'
             self.cel_tabl = None
             self.var_tabl = 'ste_var'
@@ -614,40 +614,14 @@ class Accert:
         -------
         None
         """
-        # var_need = {
-        # 'c2', 'c221', 'c222', 'c223', 'cowner', 'cfind_0', 'cfind_1', 'cfind_2', 'cfind_3',
-        # 'fcontng', 'fcap0', 'fcap0cp', 'fcr0', 'ife', 'ifueltyp', 'lsa', 'cdcost', 'fcdfuel',
-        # 'cpstcst', 'crfcdr', 'crfcp', 'cplife', 'tlife', 'decomf', 'discount_rate', 'dintrt', 'dtlife',
-        # 'divcst', 'crfdiv', 'divlife', 'ucfuel', 'pnetelmw', 'fhe3', 'wtgpd', 'uche3', 'n_day_year',
-        # 'cfactr', 'reprat', 'uctarg', 'crffwbl', 'c2212', 'fwallcst', 'fwbllife',
-        # 'ucoam_0', 'ucoam_1', 'ucoam_2', 'ucoam_3', 'ucwst_0', 'ucwst_1', 'ucwst_2', 'ucwst_3',
-        # 'tburn', 'tcycle'}
-        # which will be quoted in from the database:
-        # 'c2', 'c221', 'c222', 'c223', 'c2212' will be quoted from the account
-        # others will be quoted from the variable database
         if self.ref_model == 'fusion' or self.ref_model == 'stellarator':
             # inport the LCOE module
             module = importlib.import_module('Algorithm.LCOE')
-            # get the class
-            # LCOE = getattr(module, 'LCOE')
-            # # init the class
-
             LCOE_module = module.LCOE(c, ut, accert)
             LCOE_module.setup_tables(Accert)
             LCOE_module.quote_variable_values(c,Accert)
             LCOE_module.coelc()
-            
-            # print('[DEBUG] LCOE calculation begins')
-            # c2 = self.extract_total_cost_on_name(c, '2')[2]
-            # print('[DEBUG] c2:', c2)  
-            # c221 = self.extract_total_cost_on_name(c, '221')
-            # c222 = self.extract_total_cost_on_name(c, '222')
-            # c223 = self.extract_total_cost_on_name(c, '223')
-            # c2212 = self.extract_total_cost_on_name(c, '2212')
-            # print('[DEBUG] c221:', c221, 'c222:', c222, 'c223:', c223, 'c2212:', c2212)
-            # cowner = self.extract_variable_info_on_name(c, 'cowner')[0]
-            # print('[DEBUG] cowner:', cowner)
-
+            LCOE_module.generate_excel()
         else:
             pass
 
@@ -1998,6 +1972,7 @@ class Accert:
         filename = str(self.ref_model) + filename_suffix
         df.to_excel(filename, index=False)
         print(f"Successfully created excel file {filename}")
+
 
     def generate_results_table(self, c, conn, level=3):
         """
