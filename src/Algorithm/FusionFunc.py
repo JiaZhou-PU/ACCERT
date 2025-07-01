@@ -458,12 +458,10 @@ class FusionFunc(Algorithm):
                 acc2231 = mcdriv * (cdriv0 + (dcdrv0 * 1.0e-6 * edrive))
             if ifueltyp == 1:
                     acc2231 = (1.0e0 - fcdfuel) * acc2231
-                    acc2231 = acc2231
         else:
             acc2231 = ((1.0e-6 * ucech) * ((1.0e6 * echpwr) ** exprf))
             if ifueltyp == 1:
                 acc2231 = (1.0e0 - fcdfuel) * acc2231
-                acc2231 = acc2231
         return acc2231
 
     @staticmethod
@@ -477,7 +475,6 @@ class FusionFunc(Algorithm):
                 acc2232 = (1.0e-6 * ucich * (1.0e6 * plhybd) ** exprf)
             if ifueltyp == 1:
                 acc2232 = (1.0e0 - fcdfuel) * acc2232
-                acc2232 = acc2232   
         else:
             if ifueltyp == 1:   
                 acc2232 = 0.0e0
