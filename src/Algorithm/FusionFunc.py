@@ -127,8 +127,9 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #acc2211: FIRST WALL COST
-    def acc2211(ife, ucfwa, ucfws, fwarea, ucfwps, ucblss, fwmatm, uccarb, ucblli2o, ucconc, ifueltyp, fwallcst):
+    def acc2211(ife, ucfwa, ucfws, fwarea, ucfwps, ucblss, fwmatm, uccarb, ucblli2o, ucconc, ifueltyp, fwallcst,lsa):
         cmlsa = [0.5000e0, 0.7500e0, 0.8750e0, 1.0000e0]
+        lsa=int(lsa)
         if ife == 1:
             acc2211 = (1.0e-6 * cmlsa[lsa - 1] * (ucblss * (fwmatm(1, 1) + fwmatm(2, 1) + fwmatm(3, 1))
                                                 + uccarb * (fwmatm(1, 2) + fwmatm(2, 2) + fwmatm(3, 2))
@@ -484,13 +485,15 @@ class FusionFunc(Algorithm):
     #acc2233: NEUTRAL BEAM SYSTEM COST 
     def acc2233(ucnbi, exprf, fcdfuel, ifueltyp, pnbitot, ife, ifedrv):
         if ife == 1:
-                acc2233 = (1.0e-6 * ucnbi * (1.0e6 * pnbitot) ** exprf)
-                if ifueltyp == 1:
-                    acc2233 = (1.0e0 - fcdfuel) * acc2233
-                    acc2233 = acc2233
+            acc2233 = (1.0e-6 * ucnbi * (1.0e6 * pnbitot) ** exprf)
+            if ifueltyp == 1:
+                acc2233 = (1.0e0 - fcdfuel) * acc2233
+                acc2233 = acc2233
         else:
-                if ifedrv == 2:
-                    acc2233 = 0.0e0
+            if ifedrv == 2:
+                acc2233 = 0.0e0
+            else:
+                acc2233 = 0.0e0
         return acc2233
 
     @staticmethod
@@ -645,7 +648,9 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #accpp: PUMPS AND PIPING SYSTEM COST 
-    def acc22612(uchts, coolwh, pfwdiv, exphts, pnucblkt, pnucshld, lsa):
+    def acc22612(uchts_0, uchts_1, coolwh, pfwdiv, exphts, pnucblkt, pnucshld, lsa):
+        uchts= np.array([uchts_0, uchts_1])
+        lsa=int(lsa)
         cmlsa = [0.4000e0, 0.7000e0, 0.8500e0, 1.0000e0]
         accpp = 1.0e-6 * uchts[coolwh - 1] * ((1.0e6 * pfwdiv) ** exphts +
                                             (1.0e6 * pnucblkt) ** exphts + (1.0e6 * pnucshld) ** exphts)
@@ -699,7 +704,8 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #acc2273: ATMOSPHERIC RECOVERY SYSTEMS COST
-    def acc2273(ftrit, ucdtc, volrci, wsvol, cfrht):
+    def acc2273(ftrit, ucdtc, volrci, wsvol):
+        cfrht = 1.0e5
         if ftrit > 1.0e-3:
             acc2273 = (1.0e-6 * ucdtc * ((cfrht / 1.0e4) ** 0.6e0 * (volrci + wsvol)))
         else:
@@ -726,8 +732,13 @@ class FusionFunc(Algorithm):
 
     @staticmethod
     #acc23: TURBINE PLANT EQUIPMENT COST
-    def acc23(ireactor, ucturb, coolwh, pgrossmw, exptpe):
+    def acc23(ireactor, ucturb_0, ucturb_1, coolwh, pgrossmw, exptpe):
+        ucturb = np.array([ucturb_0, ucturb_1])
+        coolwh = int(coolwh)
         if ireactor == 1:
+            acc23 = (1.0e-6 * ucturb[coolwh - 1] * (pgrossmw / 1200.0e0) ** exptpe)
+        else:
+            # NOTE : In the original code, this line was commented out.
             acc23 = (1.0e-6 * ucturb[coolwh - 1] * (pgrossmw / 1200.0e0) ** exptpe)
         return acc23
 
@@ -831,6 +842,7 @@ class FusionFunc(Algorithm):
     @staticmethod
     #caldlscal: VCUUM DUCT COST CALCULATION
     def caldlscal(l1, ltot, imax, d_0, d_1, d_2, d_3):
+        imax = int(imax)
         d = np.array([d_0, d_1, d_2, d_3])
         caldlscal = l1 * d[imax] ** 1.4e0 + (ltot - l1) * (d[imax] * 1.2e0) ** 1.4e0
         return caldlscal

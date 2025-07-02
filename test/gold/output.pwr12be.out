@@ -81,7 +81,7 @@ Parameter "mwe" is required for cost elements:
 | c_221.12_tol_weight |         weight of the reactor primary vessel         |   556.30  |   ton    |
 |         mwe         |                    user_input MWE                    |  1,000.00 |    MW    |
 |         mwth        |                   user_input mwth                    |  3,000.00 |    MW    |
-|        n_231        |                 Scaling exponent law                 |    1.03   |    1     |
+|        n_231        |                 Scaling exponent law                 |    1.03   |          |
 |         p_in        |                Inlet turbine pressure                |   68.00   |   bar    |
 |     ref_211_fac     |                yardwork factory cost                 |    0.27   | million  |
 |     ref_211_mat     |                yardwork material cost                |   10.30   | million  |
