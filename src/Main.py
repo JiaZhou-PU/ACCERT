@@ -366,7 +366,7 @@ class Accert:
         # DEALLOCATE PREPARE stmt;
         # END$$
         # DELIMITER ;
-
+        var_id = str(var_id).replace("'","").replace('"','')
         c.callproc('extract_variable_info_on_name',(self.var_tabl, var_id))
         for row in c.stored_results():
             results = row.fetchall()
