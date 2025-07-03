@@ -448,6 +448,7 @@ class Accert:
             u_i_var_unit = ''
         if org_var_unit == '1' or org_var_unit == 'N/A' or org_var_unit == 'none' or org_var_unit == 'None':
             org_var_unit = ''
+        var_id = str(var_id).replace("'","").replace('"','')
         self.update_variable_info_on_name(c,var_id,u_i_var_value,u_i_var_unit)
         if not quite:
             print('[Updated]  Changed from {} {} to {} {}\n'.format(org_var_value,org_var_unit, u_i_var_value, u_i_var_unit))
@@ -484,7 +485,8 @@ class Accert:
         # DEALLOCATE PREPARE stmt;
         # END$$
         # DELIMITER ;
-        c.callproc('update_variable_info_on_name', (self.var_tabl, var_id, float(var_value), var_unit))
+        args = (self.var_tabl, var_id, float(var_value), var_unit)
+        c.callproc('update_variable_info_on_name', args)
         return None    
 
     def update_super_variable(self, c,var_id):
