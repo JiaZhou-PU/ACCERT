@@ -562,7 +562,7 @@ unit_names = [squareMeter cubeMeter kW MW W lbs ton kg million 'gpm*feet' '1' 'm
     '$/kVA', '$/kg', '$/A-m', 'M$/vol', '$/10000m3/hr', '$/w', 'M$/year/1200MW',
     '$/m2', '($/W)', '$/circuit', '$/MJ', '$/channel', '$/target', '$/J', 
     '$/coil', '$/A', 'kW', 'kV', 'kg/coil' '$/m3' '$/MVA' '$/kA-m' '$/kW' '$/mva' 
-    '$/kw' '$/ka-m']
+    '$/kw' '$/ka-m' 'million/ton']
 
 alg_names = ['sum_multi_accounts' 'sum_multi_weights' 'sum_multi_pumps' 'ptn_account' 
 'unit_weights' 'pump' 'containment' 'MWth_scale' 'unit_volume' 'dev_factor_ref' 'tur_exp_n' 
@@ -656,7 +656,7 @@ abr_var_names = [ 'CH_abr1000' 'CH_AP1000'
  'escalate_1987'  'mwreth' 'no_of_cr' 'no_of_crd' 'no_of_rcpump' 
  'prn_235_of_231_fac' 'prn_235_of_231_lab' 'prn_235_of_231_mat' 'prn_fac_231_lab' 
  'prn_fac_231_mat' 'r_222.13_lab' 'r_222.13_mat' 'r_78_220A224_fac' 'r_78_226.4_fac' 
- 'liner_fraction' 'c_220A.221_cs_weight' 'c_220A.221_ss_weight' ]
+ 'liner_fraction' 'c_220A.221_cs_weight' 'c_220A.221_ss_weight' 'sg_weight', 'c_sg_weight' 'no_sg' ]
 
 containment_var_names = ['CPI' 'Void_fraction' 'liner_fraction' 'Cont_H_tot_m' 'Cont_rad_out_m' 
  'Cont_shell_t_m' 'Cont_H_wall_m' 'Basemat_t_m' 'Dome_t_m' 'Intern_wall_t' 'React_cav_A_m2' 
