@@ -1495,7 +1495,7 @@ class Accert:
         var_id : str
             Variable ID.
         """
-
+        var_id = str(var_id).replace('"', '').replace("'", "")
         sup_val_lst = self.extract_super_val(c, var_id)
         if sup_val_lst:
             sup_val_lst = sup_val_lst.split(',')
@@ -1639,6 +1639,7 @@ class Accert:
                     u_i_var_unit = str(var.unit.value)
                     self.update_input_variable(c, var_id, u_i_var_value, u_i_var_unit, var_type='Sub ')
         var_id = str(alg_inp.id).replace('"', '')
+        
         self.update_super_variable(c, var_id)
 
     def check_and_process_total_cost(self, c, accert):
