@@ -99,3 +99,9 @@ html_theme_options = {
     "github_url": "https://github.com/accert-dev/ACCERT",
     "navbar_end": ["navbar-icon-links"]
 }
+
+# Link shortcuts
+extlinks = {
+    'ghpull': ('https://github.com/accert-dev/ACCERT/pull/%s', 'PR #%s'),
+    'ghissue': ('https://github.com/accert-dev/ACCERT/issues/%s', 'Issue #%s'),
+}

@@ -1,7 +1,7 @@
 necost {
     construction_interest_rate = 0.05
     operations_interest_rate = 0.05
-    sample_size = 500
+    sample_size = 5000
     
     fuel_cycles {
         cycle(initial_cycle) {reactor(PWR) { fleet_capacity=1000 }}
@@ -22,7 +22,7 @@ necost {
     capital_costs {
         item(CapA){cost_type = s_curve  
                 expenditure_time = 5 
-                distribution{ type = triangular low = 2300 high = 5800 nominal = 4000 } 
+                distribution{ type = triangular low = 2300 high = 9800 nominal = 4000 } 
                 }
     }
 
