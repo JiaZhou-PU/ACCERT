@@ -1,3 +1,4 @@
+Requires-Python:<3.11
 mysql.connector-python==8.0.24
 prettytable==3.4.0
 configparser
