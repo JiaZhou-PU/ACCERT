@@ -28,12 +28,12 @@ The input file for the fusion model is located at ``accert/tutorial/stellarator.
 
 .. code-block:: json
 
-accert{
-    ref_model = "stellarator"
-    var("csi"){value = 16 unit = million} 
-    var("lsa"){value = 2 unit = N/A}
-    var("denstl"){value = 7800 unit = 'kg/m3'}
-}
+   accert{
+       ref_model = "stellarator"
+       var("csi"){value = 16 unit = million} 
+       var("lsa"){value = 2 unit = N/A}
+       var("denstl"){value = 7800 unit = 'kg/m3'}
+   }
 
 - **accert{}**: Denotes the start of the ACCERT input configuration.
 - **ref_model**: Specifies the reference model as "stellarator".
@@ -63,7 +63,7 @@ Interpreting the Results
 
 The output will be generated in the ``tutorial`` directory, as ``output.out``, which contains screen outputs and the following Excel files: 
 
-- ** ``stellarator_updated_account.xlsx`` **: Contains the updated cost breakdown for the stellarator model.
-- ** ``stellarator_LCOE_results.xlsx`` **: Contains the LCOE analysis results specific to the stellarator configuration.
+- **``stellarator_updated_account.xlsx``**: Contains the updated cost breakdown for the stellarator model.
+- **``stellarator_LCOE_results.xlsx``**: Contains the LCOE analysis results specific to the stellarator configuration.
 
 
