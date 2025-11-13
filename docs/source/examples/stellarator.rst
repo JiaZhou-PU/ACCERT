@@ -63,7 +63,7 @@ Interpreting the Results
 
 The output will be generated in the ``tutorial`` directory, as ``output.out``, which contains screen outputs and the following Excel files: 
 
-- **``stellarator_updated_account.xlsx``**: Contains the updated cost breakdown for the stellarator model.
-- **``stellarator_LCOE_results.xlsx``**: Contains the LCOE analysis results specific to the stellarator configuration.
+- **stellarator_updated_account.xlsx**: Contains the updated cost breakdown for the stellarator model.
+- **stellarator_LCOE_results.xlsx**: Contains the LCOE analysis results specific to the stellarator configuration.
 
 
