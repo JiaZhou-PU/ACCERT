@@ -33,7 +33,10 @@ with open(toc_file_path, 'w', encoding='utf-8') as toctree_file:
 
 Accert Code Reference
 ==========================
-This section provides detailed information on the Accert codebase. The Accert codebase is divided into two main sections: the main Accert class and utility functions. The main Accert class contains the main functions and methods for the Accert model, while the utility functions contain helper functions for the Accert model.
+This section provides detailed information on the Accert codebase. The Accert codebase is divided 
+into two main sections: the main Accert class and utility functions. The main Accert class contains
+the main functions and methods for the Accert model, while the utility functions contain helper 
+functions for the Accert model.
 
 .. toctree::
    :maxdepth: 1
