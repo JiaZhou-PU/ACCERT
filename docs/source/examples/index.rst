@@ -14,3 +14,4 @@ This document provides a comprehensive explanation of the ACCERT running example
    pwr12-be
    abr1000
    fusion
+   stellarator

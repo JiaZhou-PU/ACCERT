@@ -1003,7 +1003,7 @@ necost {
                     InputTmpl="sonarray"
 
                     value {
-                        Description = 'Costs for the spent fuel, choose the cost item from the fuel_costs section"
+                        Description = "Costs for the spent fuel, choose the cost item from the fuel_costs section"
                         MinOccurs = 1
                         MaxOccurs = NoLimit
                         ValType = String
